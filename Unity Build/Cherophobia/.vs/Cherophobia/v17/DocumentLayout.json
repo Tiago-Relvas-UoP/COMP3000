@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\MoveCamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:Assets\\MoveCamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\PlayerCam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:Assets\\PlayerCam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|c:\\users\\drtie\\documents\\! uni\\comp3000\\unity build\\cherophobia\\assets\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\assets\\happinesscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\happinesscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HappinessController.cs",
+              "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\HappinessController.cs",
+              "RelativeDocumentMoniker": "Assets\\HappinessController.cs",
+              "ToolTip": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\HappinessController.cs",
+              "RelativeToolTip": "Assets\\HappinessController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T23:10:13.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayerMovement.cs",
+              "ToolTip": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\PlayerMovement.cs",
+              "RelativeToolTip": "Assets\\PlayerMovement.cs",
+              "ViewState": "AgIAANAAAAAAAAAAAAAYwOcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T00:15:54.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MoveCamera.cs",
+              "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\MoveCamera.cs",
+              "RelativeDocumentMoniker": "Assets\\MoveCamera.cs",
+              "ToolTip": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\MoveCamera.cs",
+              "RelativeToolTip": "Assets\\MoveCamera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T00:11:04.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayerCam.cs",
+              "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\PlayerCam.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayerCam.cs",
+              "ToolTip": "C:\\Users\\drtie\\Documents\\! Uni\\COMP3000\\Unity Build\\Cherophobia\\Assets\\PlayerCam.cs",
+              "RelativeToolTip": "Assets\\PlayerCam.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T23:42:54.648Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
