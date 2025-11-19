@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
         }
 
-        Debug.Log("Current Speed:" + rb.velocity.magnitude);
+        // Debug.Log("Current Speed:" + rb.velocity.magnitude);
     }
 
     private void FixedUpdate()

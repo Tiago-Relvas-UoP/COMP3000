@@ -9,12 +9,12 @@ public class HappinessController : MonoBehaviour
     public int happinessSlider = 1;
     public static float happinessValue;
 
-    private void Start()
+    public void Start()
     {
         happinessValue = happinessSlider;
     }
 
-    private void Update()
+    public void Update()
     {
         happinessValue = happinessSlider;
     }
