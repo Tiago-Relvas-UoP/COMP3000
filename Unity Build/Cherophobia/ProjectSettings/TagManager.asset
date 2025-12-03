@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MainFuse
+  - MasterDoor
+  - CollectibleFuse
+  - CollectibleCrowbar
+  - CollectibleCode
+  - Planks
+  - MainCode
   layers:
   - Default
   - TransparentFX
