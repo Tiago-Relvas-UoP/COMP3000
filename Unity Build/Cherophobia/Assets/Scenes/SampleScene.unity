@@ -17640,8 +17640,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   happinessSlider: 0
-  decayTimer: 5
-  decayRate: 0.2
+  unhappyThreshold: 0
+  neutralThreshold: 25
+  happyThreshold: 50
+  overjoyedThreshold: 75
+  timeToWait: 5
+  done: 0
+  decayInterval: 0.5
+  decayRate: 1
   healthBar: {fileID: 303191475}
   state: 0
 --- !u!114 &786581290

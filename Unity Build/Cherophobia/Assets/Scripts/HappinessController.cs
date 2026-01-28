@@ -9,16 +9,20 @@ public class HappinessController : MonoBehaviour
     [Range(0f, 100f)]
     public float happinessSlider = 0f;
     public static float happinessValue;
+    private float lastHappinessValue;
 
     [Header("Happiness Thresholds")]
-    public const float unhappyThreshold = 0f;
-    public const float neutralThreshold = 25f;
-    public const float happyThreshold = 50f;
-    public const float overjoyedThreshold = 75f;
+    public float unhappyThreshold = 0f;
+    public float neutralThreshold = 25f;
+    public float happyThreshold = 50f;
+    public float overjoyedThreshold = 75f;
 
-    [Header("Time before Happiness Decay")]
-    public float decayTimer = 0f; // Interval Between Decays
-    public float decayRate = 1f; // How 
+    [Header("Happiness Decay")]
+    public float timeToWait = 5.0f;
+    public float done = 0.0f;
+    public float decayInterval = 1.0f;
+    public int decayRate = 0;
+    private float timeSinceLastIncrease = 0.0f;
 
     [Header("Visual Overlay")]
     public HealthBar healthBar;
@@ -36,64 +40,72 @@ public class HappinessController : MonoBehaviour
 
     public void Start()
     {
-        happinessValue = happinessSlider;
-        healthBar.SetHealth(happinessValue);
+        UpdateVisuals();
     }
 
     public void Update()
     {
-        happinessValue = happinessSlider;
+        UpdateVisuals();
+        StateHandler();
 
-        if (happinessSlider > currentThreshold)
+        timeSinceLastIncrease += Time.deltaTime;
+
+        if (timeSinceLastIncrease > timeToWait && happinessSlider > currentThreshold)
         {
-            StartCoroutine("happinessdecay");
+            if (Time.time > done)
+            {
+                done = Time.time + decayInterval;
+                decreaseHappiness(decayRate);
+            }
         }
-        
+       
+
         if (Input.GetKeyDown(KeyCode.L))
         {
             IncreaseHappiness(20);
         }
 
-        StateHandler();
+    }
+
+    void UpdateVisuals() // Update visual indicator for happiness level
+    {
+        happinessValue = happinessSlider;
+        healthBar.SetHealth(happinessSlider);
     }
 
     void IncreaseHappiness(int addedHap)
     {
         happinessSlider += addedHap;
-        healthBar.SetHealth(happinessValue); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
+        timeSinceLastIncrease = 0.0f;
+        // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
     }
 
-    // Function that handles happiness decay if its value is not equal to the threshold.
-    IEnumerator happinessdecay()
+    void decreaseHappiness(int addedHap)
     {
-        yield return new WaitForSeconds(decayTimer); // Wait x seconds
-        
-        while (happinessSlider > currentThreshold) // Execute while Slider value is higher than currentThreshold
-        {
-            happinessSlider -= decayRate;
-        }
+        happinessSlider -= addedHap;
+        // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
     }
 
     // Manages Happiness States. When reaching a new Threshold, the current threshold is set to that to change Happiness Decay Limit
     private void StateHandler()
     {
-        if (happinessSlider == unhappyThreshold)
+        if (happinessSlider <= unhappyThreshold)
         {
             state = HappinessState.unhappy;
             currentThreshold = unhappyThreshold;
 
         } 
-        else if (happinessSlider == neutralThreshold)
+        else if (happinessSlider >= neutralThreshold && happinessSlider < happyThreshold)
         {
             state = HappinessState.neutral;
             currentThreshold = neutralThreshold;
         }
-        else if (happinessSlider == happyThreshold) 
+        else if (happinessSlider >= happyThreshold && happinessSlider < overjoyedThreshold) 
         {
             state = HappinessState.happy;
             currentThreshold = happyThreshold;
         }
-        else if (happinessSlider == overjoyedThreshold)
+        else if (happinessSlider >= overjoyedThreshold)
         {
             state = HappinessState.overjoyed;
             currentThreshold = overjoyedThreshold;
