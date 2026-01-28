@@ -374,6 +374,8 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/HappinessController.cs"
 "Assets/Scripts/HappinessTrap.cs"
+"Assets/Scripts/HealthBar.cs"
+"Assets/Scripts/HealthController.cs"
 "Assets/Scripts/Interactable.cs"
 "Assets/Scripts/MoveCamera.cs"
 "Assets/Scripts/OpenMaster.cs"

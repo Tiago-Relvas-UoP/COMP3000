@@ -8,6 +8,9 @@ public class HappinessTrap : MonoBehaviour
     [Header("Is Trap active?")]
     public bool isActive;
 
+    [Header("Values")]
+    public float HappinessReceived = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,7 @@ public class HappinessTrap : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             // other.gameObject.GetComponent<HappinessController>().happinessSlider += 1;
-            other.GetComponentInParent<HappinessController>().happinessSlider += 1;
+            other.GetComponentInParent<HappinessController>().happinessSlider += HappinessReceived;
 
             isActive = false;
             Debug.Log("Entered collision zone!");

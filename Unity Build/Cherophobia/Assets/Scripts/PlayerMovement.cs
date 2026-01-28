@@ -13,7 +13,9 @@ public class PlayerMovement : MonoBehaviour
     // Drag
     public float groundDrag;
 
-    private float happinessModifier;
+    [Header("Movement Modifiers")]
+    private float happinessModifier; // This value rips the value from happinessValue in the HappinessController script
+    public float hapMultiplier; // This value manages how much the happinessModifier should affect movement.
 
     [Header("Jumping")]
     public float jumpForce;
@@ -72,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // Self-note: Changed to 0.3f from 0.2f
 
-        happinessModifier = HappinessController.happinessValue;
+        happinessModifier = HappinessController.happinessValue * hapMultiplier;
 
         MyInput();
         SpeedControl();
