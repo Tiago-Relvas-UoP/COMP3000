@@ -62,9 +62,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\HealthController.cs" />
     <Compile Include="Assets\Scripts\PlayerCam.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\FuseBox.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\CollectFuse.cs" />
+    <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\HappinessController.cs" />
@@ -875,6 +877,10 @@
     <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.Player.csproj">
       <Project>{EB6FF19E-28E5-176E-7B71-D30EFEEB2095}</Project>
       <Name>Unity.RenderPipelines.Universal.Runtime.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Player.csproj">
+      <Project>{84A3044C-67CA-618A-41E1-AAF7C925103F}</Project>
+      <Name>Unity.AI.Navigation.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.Player.csproj">
       <Project>{FC57828A-8C2E-8F17-36F8-8C53D2DF9BF5}</Project>

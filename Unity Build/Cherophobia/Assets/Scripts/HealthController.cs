@@ -26,7 +26,7 @@ public class HealthController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            receiveDamage(20);
+            ReceiveDamage(20);
             Debug.Log("Player received damage (HP: " +  currentHealth + ")");
         }
     }
@@ -37,7 +37,7 @@ public class HealthController : MonoBehaviour
     }
 
     // Function that once called, reduces player hp by amount
-    void receiveDamage(int damage)
+    public void ReceiveDamage(int damage)
     {
         currentHealth -= damage;
     }

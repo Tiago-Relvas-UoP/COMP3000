@@ -62,9 +62,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\HealthController.cs" />
     <Compile Include="Assets\Scripts\PlayerCam.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\FuseBox.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\CollectFuse.cs" />
+    <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\HappinessController.cs" />
@@ -940,6 +942,10 @@
       <Project>{43FF0306-38C3-D48E-63F4-23D022F78AE1}</Project>
       <Name>Unity.RenderPipelines.Universal.Runtime</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.csproj">
+      <Project>{3B632734-3FB2-1F1A-6B25-F411E2BC9506}</Project>
+      <Name>Unity.AI.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Burst.Editor.csproj">
       <Project>{F9DF8BA5-6A54-A429-2807-A698275B8646}</Project>
       <Name>Unity.Burst.Editor</Name>
@@ -984,13 +990,13 @@
       <Project>{EF3A001D-8385-8059-253C-084163887D3B}</Project>
       <Name>Unity.VisualScripting.Core.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.ProBuilder.AddOns.Editor.csproj">
-      <Project>{8EEE777F-099E-5BDD-E936-3FF7C0738C6F}</Project>
-      <Name>Unity.ProBuilder.AddOns.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{3C00D88D-CD2C-C147-D8C6-439E5F909E46}</Project>
       <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ProBuilder.AddOns.Editor.csproj">
+      <Project>{8EEE777F-099E-5BDD-E936-3FF7C0738C6F}</Project>
+      <Name>Unity.ProBuilder.AddOns.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Config.Runtime.csproj">
       <Project>{54B43C2C-2FC0-E981-B54F-E69A4A156461}</Project>
@@ -1036,6 +1042,10 @@
       <Project>{67BB041D-008D-332F-0702-C2B010D02756}</Project>
       <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Updater.csproj">
+      <Project>{BDFFCE5B-17F2-D949-6ABD-4E1EC8A55CE8}</Project>
+      <Name>Unity.AI.Navigation.Updater</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj">
       <Project>{51E0CB8A-7E90-2F3E-3509-00A5A0168DE4}</Project>
       <Name>Unity.VisualScripting.State.Editor</Name>
@@ -1064,6 +1074,10 @@
       <Project>{EC91E839-4CB4-134B-D438-9E41C4F845E4}</Project>
       <Name>Unity.RenderPipelines.Universal.Shaders</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj">
+      <Project>{473BE6D7-049F-41BF-89F2-C47FEA2DDB42}</Project>
+      <Name>Unity.AI.Navigation.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.ProBuilder.AssetIdRemapUtility.csproj">
       <Project>{B7FBD026-9A3F-3BB7-4C6D-64B90D142605}</Project>
       <Name>Unity.ProBuilder.AssetIdRemapUtility</Name>
@@ -1071,6 +1085,10 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{679682A3-EA9C-4084-BA88-36646A7AD41B}</Project>
       <Name>Unity.VisualScripting.State</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj">
+      <Project>{1666BB67-0029-76B2-3932-2F2B97A0D673}</Project>
+      <Name>Unity.AI.Navigation.Editor.ConversionSystem</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{1F9EDFA7-77FE-B84C-9173-8B6BD533C594}</Project>
