@@ -13,11 +13,6 @@ public class Interactable : MonoBehaviour
     public Transform InteractorSource; // Object source
     public float InteractRange; // Range for interactable
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -33,5 +28,4 @@ public class Interactable : MonoBehaviour
             }
         }
     }
-
 }

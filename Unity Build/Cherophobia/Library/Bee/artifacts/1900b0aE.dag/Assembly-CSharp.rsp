@@ -382,6 +382,7 @@
 "Assets/Scripts/HappinessTrap.cs"
 "Assets/Scripts/HealthBar.cs"
 "Assets/Scripts/HealthController.cs"
+"Assets/Scripts/HidingPlace.cs"
 "Assets/Scripts/Interactable.cs"
 "Assets/Scripts/MoveCamera.cs"
 "Assets/Scripts/OpenMaster.cs"

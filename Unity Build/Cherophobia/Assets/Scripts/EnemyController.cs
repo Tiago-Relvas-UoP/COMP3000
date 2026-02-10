@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform player; // Reference to player.
     [SerializeField] private Transform[] patrolPoints; // Stores all patrol points.
     [SerializeField] public HealthController healthController; // Reference to Health Bar Component.
+    [SerializeField] public HidingPlace hidingPlace;
 
     [Header("Settings")]
     [SerializeField] private float patrolWaitTime = 2f; // Time to wait before resuming patrol.
@@ -36,6 +37,7 @@ public class EnemyController : MonoBehaviour
     private bool _isWaiting; // Determines if Enemy is waiting or not.
     private float _timeSinceLostPlayer; // Stores in a float (that is incremented with delta Time) how much time has passed since Enemy has lost player in their LoS.
     private bool _isAttacking; // Determines if Enemy is currently mid-attack or not.
+    private EnemyState m_storestate;
 
     // Called before Start()
     private void Awake()
@@ -55,6 +57,9 @@ public class EnemyController : MonoBehaviour
     {
         var dstToPlayer = Vector3.Distance(player.position, transform.position); // Stores how much distance there is between Enemy and player.
 
+        if (m_storestate != _state) Debug.Log("New state: " + _state);
+        m_storestate = _state;
+
         // Switch statement that controls the Enemies behaviour depending on current state
         switch (_state)
         {
@@ -62,7 +67,7 @@ public class EnemyController : MonoBehaviour
             case EnemyState.Patrolling:
                 Patrol();
 
-                if(dstToPlayer <= detectionRange && CanSeePlayer())
+                if(dstToPlayer < detectionRange && CanSeePlayer())
                 {
                     _state = EnemyState.Following;
                 }
@@ -100,8 +105,9 @@ public class EnemyController : MonoBehaviour
 
             // When Enemy state is set to Attacking (The player)
             case EnemyState.Attacking:
+
                 Attack();
-                if(!_isAttacking && dstToPlayer > attackRange) // Note to self: Maybe this is the issue with Enemy not attacking player in range after attacking once?
+                if(!_isAttacking) // Note to self: Maybe this is the issue with Enemy not attacking player in range after attacking once?
                 {
                     _state = EnemyState.Following; // State change to Following
                     _agent.isStopped = false; // Enemy (Agent) is no longer stopped
@@ -158,6 +164,7 @@ public class EnemyController : MonoBehaviour
     // Coroutine when Enemy reaches a Patrol point. First, enemy is set to waiting and is stopped, then it waits a few seconds (set in inspector) and once the duration is over, then next patrol point is set and enemy starts moving there.
     private IEnumerator WaitAtPatrolPoint()
     {
+        Debug.Log("Waiting at Patrol");
         // Sets enemy to Wait/Stop on reaching current patrol point
         _isWaiting = true;
         _agent.isStopped = true;
@@ -173,6 +180,8 @@ public class EnemyController : MonoBehaviour
     // Forces enemy to retrieve to the closest patrol point. This method is called once it loses interest in a player.
     private void GoToClosestPatrolPoint()
     {
+        Debug.Log("Going to closest Patrol Point");
+
         if (patrolPoints.Length == 0) return; // Returns nothing if there are no set patrol points.
 
         var closestIndex = 0; // Set to 0 by default, but will store the closest patrol point index to then be set as the next interest point for enemy to walk to
@@ -196,6 +205,8 @@ public class EnemyController : MonoBehaviour
     // Method that sets the next patrol point for enemy to go to.
     private void GoToNextPatrolPoint() 
     {
+        Debug.Log("Going to next patrol point");
+
         if (patrolPoints.Length == 0) return; // Returns nothing if there are no set patrol points.
 
         _agent.SetDestination(patrolPoints[_currentPatrolIndex].position); // Sets destination to current set index patrol point
@@ -211,18 +222,24 @@ public class EnemyController : MonoBehaviour
     }
 
     // Method that returns true if two sub-methods also return true.
+    
     private bool CanSeePlayer()
     {
-        // Both set to false to allow Enemy to immediatly chase player after reaching a patrol point (Ignores waiting time)
-        _isWaiting = false; 
-        _agent.isStopped = false;
-
+        //Debug.Log("Facing player: " + IsFacingPlayer());
+        //Debug.Log("ClearPath: " + HasClearPathToPlayer());
         return IsFacingPlayer() && HasClearPathToPlayer(); // Returns a true value is both methods also return the same
     }
 
     // Method that checks if Enemy is currently facing the player
     private bool IsFacingPlayer()
     {
+        if (hidingPlace.hiding == true) 
+        {
+            _timeSinceLostPlayer = 99999999999999;
+            return false;
+        }
+        
+
         var dirToPlayer = (player.position - transform.position).normalized; // Direction calculation between Enemy (agent) and player
         var angle = Vector3.Angle(transform.forward, dirToPlayer); // Calculates angle between Enemy (agent) and player
         return angle <= viewAngle / 2f; // Returns a true bool if angle is less or equal than the set view angle divided by 2
