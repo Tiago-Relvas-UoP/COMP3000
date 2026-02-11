@@ -18092,6 +18092,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 1854161472}
+  happinessController: {fileID: 786581289}
 --- !u!43 &805120274
 Mesh:
   m_ObjectHideFlags: 0
@@ -24461,6 +24462,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 1854161472}
+  happinessController: {fileID: 0}
 --- !u!114 &1727714726
 MonoBehaviour:
   m_ObjectHideFlags: 0

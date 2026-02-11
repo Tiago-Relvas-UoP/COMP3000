@@ -55,7 +55,7 @@ public class HappinessController : MonoBehaviour
             if (Time.time > done)
             {
                 done = Time.time + decayInterval;
-                decreaseHappiness(decayRate);
+                DecreaseHappiness(decayRate);
             }
         }
        
@@ -80,7 +80,7 @@ public class HappinessController : MonoBehaviour
         // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
     }
 
-    void decreaseHappiness(int addedHap)
+    public void DecreaseHappiness(int addedHap)
     {
         happinessSlider -= addedHap;
         // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)

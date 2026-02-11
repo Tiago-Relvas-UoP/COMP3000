@@ -12,6 +12,9 @@ public class HealthController : MonoBehaviour
     [Header("Visual Overlay")]
     public HealthBar healthBar;
 
+    [Header("References")]
+    public HappinessController happinessController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +29,7 @@ public class HealthController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            ReceiveDamage(20);
-            Debug.Log("Player received damage (HP: " +  currentHealth + ")");
+            SelfInjure();
         }
     }
 
@@ -40,6 +42,21 @@ public class HealthController : MonoBehaviour
     public void ReceiveDamage(int damage)
     {
         currentHealth -= damage;
+    }
+
+    // Function that once called, reduces HP but also reduces Happiness Slider.
+    public void SelfInjure() 
+    { 
+        if (currentHealth > 25f && happinessController.happinessSlider > 24f)
+        {
+            ReceiveDamage(25);
+            happinessController.DecreaseHappiness(25);
+            Debug.Log("Self-injure activated.");
+        } else
+        {
+            Debug.Log("Self-injure error: Player either is too low, or has no Happiness at all.");
+            Debug.Log("Current Health:" + currentHealth + " && Current Happiness: " + happinessController.happinessSlider);
+        }
     }
 
     // Function that once called, heals the players hp by amount
