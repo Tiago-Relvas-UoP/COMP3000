@@ -5,27 +5,28 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private GameObject MasterDoor;
+    private GameObject hidingSpots;
 
     // Master Door
-    [SerializeField]
     [Header("Master Door")]
-    public bool IsMasterUnlocked;
-    public bool placedFuse;
-    public bool removedPlanks;
-    public bool placedCode;
+    [SerializeField] public bool IsMasterUnlocked;
+    [SerializeField] public bool placedFuse;
+    [SerializeField] public int removedPlanks;
+    [SerializeField] public bool placedCode;
 
     // Found objects
-    [SerializeField]
     [Header("Collectibles")]
-    public bool hasFuse;
-    public bool hasCrowbar;
-    public bool hasCode;
+    [SerializeField] public bool hasFuse;
+    [SerializeField] public bool hasCrowbar;
+    [SerializeField] public bool hasCode;
+
+    [Header("Is Player Hiding?")]
+    [SerializeField] public bool hidingInLocker;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         MasterDoor = GameObject.FindGameObjectWithTag("MasterDoor");
 
         IsMasterUnlocked = false;
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
         hasCode = false;
         
         placedFuse = false;
-        removedPlanks = false;
+        removedPlanks = 0;
         placedCode = false;
     }
 
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (placedFuse && removedPlanks && placedCode)
+        if (placedFuse && removedPlanks == 3 && placedCode)
         {
             IsMasterUnlocked = true; // Makes Master Door available for interaction
         }

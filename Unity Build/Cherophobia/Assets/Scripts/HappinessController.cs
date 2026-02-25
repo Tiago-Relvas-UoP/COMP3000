@@ -73,7 +73,7 @@ public class HappinessController : MonoBehaviour
         healthBar.SetHealth(happinessSlider);
     }
 
-    void IncreaseHappiness(int addedHap)
+    public void IncreaseHappiness(int addedHap)
     {
         happinessSlider += addedHap;
         timeSinceLastIncrease = 0.0f;

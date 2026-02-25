@@ -7,25 +7,24 @@ public class HidingPlace : MonoBehaviour
     [Header("References")]
     [SerializeField] public GameObject hideText, showText;
     [SerializeField] public GameObject normalPlayer, hidingPlayer;
+    [SerializeField] public GameManager gameManager;
     [SerializeField] public EnemyController enemyController;
 
     [Header("Transforms")]
     [SerializeField] public Transform enemyTransform;
 
     [Header("Bools")]
-    [SerializeField] public bool interactable, hiding;
+    [SerializeField] public bool interactable, hidingHere;
 
     [Header("Distance")]
     [SerializeField] public float loseDistance;
 
-    public GameObject PlayerTransformOnHide;
-    public GameObject PositionBeforeHiding;
 
     // Start is called before the first frame update
     private void Start()
     {
         interactable = false;
-        hiding = false;
+        hidingHere = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -54,9 +53,10 @@ public class HidingPlace : MonoBehaviour
         { 
             if (Input.GetKeyDown(KeyCode.E)) 
             {
-                hiding = true;
+                hidingHere = true;
+                gameManager.hidingInLocker = true;
 
-                hideText.SetActive(true);
+                hideText.SetActive(false);
                 showText.SetActive(true);
 
                 hidingPlayer.SetActive(true);
@@ -68,14 +68,18 @@ public class HidingPlace : MonoBehaviour
             }
         }
 
-        if(hiding == true) 
+        if(hidingHere == true) 
         { 
             if (Input.GetKeyDown(KeyCode.Q)) 
             {
-                hideText.SetActive(false);
+                hidingHere = false;
+                gameManager.hidingInLocker = false;
+
+                showText.SetActive(false);
+
                 normalPlayer.SetActive(true);
                 hidingPlayer.SetActive(false);
-                hiding = false;
+
             }
         }
     }

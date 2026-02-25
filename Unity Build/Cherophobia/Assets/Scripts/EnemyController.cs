@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform player; // Reference to player.
     [SerializeField] private Transform[] patrolPoints; // Stores all patrol points.
     [SerializeField] public HealthController healthController; // Reference to Health Bar Component.
-    [SerializeField] public HidingPlace hidingPlace;
+    [SerializeField] public GameManager gameManager;
 
     [Header("Settings")]
     [SerializeField] private float patrolWaitTime = 2f; // Time to wait before resuming patrol.
@@ -233,7 +233,7 @@ public class EnemyController : MonoBehaviour
     // Method that checks if Enemy is currently facing the player
     private bool IsFacingPlayer()
     {
-        if (hidingPlace.hiding == true) 
+        if (gameManager.hidingInLocker == true) 
         {
             _timeSinceLostPlayer = 99999999999999;
             return false;
