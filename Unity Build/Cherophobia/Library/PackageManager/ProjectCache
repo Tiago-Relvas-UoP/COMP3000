@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639054641909628487
-    m_Hash: 3649954368
+      ticks: 639082293647039605
+    m_Hash: 1594531011
   m_LockFileStatus:
     m_FilePath: C:/Users/drtie/Documents/! Universidade/COMP3000/COMP3000/Unity Build/Cherophobia/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639054641909688817
-    m_Hash: 1432257625
+      ticks: 639082293647130274
+    m_Hash: 2040166166
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -65,6 +65,7 @@ m_ResolvedPackages:
     - 2.0.8
     - 2.0.9
     - 2.0.10
+    - 2.0.11
     compatible:
     - 1.1.5
     - 1.1.6
@@ -232,6 +233,7 @@ m_ResolvedPackages:
     - 2.10.2
     - 2.11.2
     - 2.11.3
+    - 2.11.4
     compatible:
     - 2.5.2
     - 2.6.0
@@ -246,6 +248,7 @@ m_ResolvedPackages:
     - 2.10.2
     - 2.11.2
     - 2.11.3
+    - 2.11.4
     recommended: 2.5.2
     deprecated: []
   dependencies: []
@@ -286,6 +289,128 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 2.5.2
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  fingerprint: 
+- packageId: com.unity.formats.fbx@4.2.1
+  testable: 0
+  isDirectDependency: 1
+  version: 4.2.1
+  source: 1
+  resolvedPath: C:\Users\drtie\Documents\! Universidade\COMP3000\COMP3000\Unity Build\Cherophobia\Library\PackageCache\com.unity.formats.fbx@4.2.1
+  assetPath: Packages/com.unity.formats.fbx
+  name: com.unity.formats.fbx
+  displayName: FBX Exporter
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: "The Unity FBX Exporter package makes it easy to send geometry and
+    animation to any application that supports the FBX format and send them back
+    to Unity with minimal effort.\n\nIn particular, this round-trip workflow enables
+    you to export Unity Scenes to FBX files, import them into Autodesk\xAE Maya\xAE,
+    Autodesk\xAE Maya LT\u2122, or Autodesk\xAE 3ds Max\xAE using an artist-friendly
+    interface, export Unity-ready FBX geometry and animation, and safely merge your
+    changes back into those Assets to continue your work in Unity."
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 2.0.1-preview.2
+    - 2.0.1-preview.3
+    - 2.0.1-preview.4
+    - 2.0.1-preview.5
+    - 2.0.1-preview.11
+    - 2.0.2-preview.1
+    - 2.0.3-preview.3
+    - 3.0.0-preview.2
+    - 3.0.1-preview.2
+    - 3.1.0-preview.1
+    - 3.2.0-preview.2
+    - 3.2.1-preview.2
+    - 4.0.0-pre.1
+    - 4.0.0-pre.4
+    - 4.0.1
+    - 4.1.0-pre.2
+    - 4.1.0
+    - 4.1.1
+    - 4.1.2
+    - 4.1.3
+    - 4.2.0-pre.1
+    - 4.2.0
+    - 4.2.1
+    - 5.0.0-pre.1
+    - 5.0.0
+    - 5.1.0-pre.1
+    - 5.1.0
+    - 5.1.1
+    - 5.1.2
+    - 5.1.3
+    - 5.1.4
+    - 5.1.5
+    compatible:
+    - 4.2.1
+    - 5.0.0-pre.1
+    - 5.0.0
+    - 5.1.0-pre.1
+    - 5.1.0
+    - 5.1.1
+    - 5.1.2
+    - 5.1.3
+    - 5.1.4
+    - 5.1.5
+    recommended: 4.2.1
+    deprecated: []
+  dependencies:
+  - name: com.autodesk.fbx
+    version: 4.2.1
+  - name: com.unity.timeline
+    version: 1.7.1
+  resolvedDependencies:
+  - name: com.autodesk.fbx
+    version: 4.2.1
+  - name: com.unity.timeline
+    version: 1.7.6
+  - name: com.unity.modules.audio
+    version: 1.0.0
+  - name: com.unity.modules.director
+    version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.modules.particlesystem
+    version: 1.0.0
+  keywords:
+  - fbx
+  - animation
+  - modeling
+  - maya
+  - max
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638089453510000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.formats.fbx@4.2/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/com.unity.formats.fbx.git
+    revision: 877a978d1923ee725cad1883350d6effee574951
+    path: 
+  unityLifecycle:
+    version: 4.2.1
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -458,12 +583,14 @@ m_ResolvedPackages:
     - 2.0.23
     - 2.0.25
     - 2.0.26
+    - 2.0.27
     compatible:
     - 2.0.22
     - 2.0.23
     - 2.0.25
     - 2.0.26
-    recommended: 2.0.26
+    - 2.0.27
+    recommended: 2.0.27
     deprecated: []
   dependencies:
   - name: com.unity.test-framework
@@ -661,6 +788,7 @@ m_ResolvedPackages:
     - 6.0.6
     - 6.0.7
     - 6.0.8
+    - 6.0.9
     compatible:
     - 5.2.3
     - 5.2.4
@@ -1329,6 +1457,7 @@ m_ResolvedPackages:
     - 1.8.8
     - 1.8.9
     - 1.8.10
+    - 1.8.11
     compatible:
     - 1.7.6
     - 1.7.7
@@ -1343,6 +1472,7 @@ m_ResolvedPackages:
     - 1.8.8
     - 1.8.9
     - 1.8.10
+    - 1.8.11
     recommended: 1.7.7
     deprecated: []
   dependencies:
@@ -1529,6 +1659,7 @@ m_ResolvedPackages:
     - 1.9.7
     - 1.9.8
     - 1.9.9
+    - 1.9.10
     compatible:
     - 1.9.4
     - 1.9.5
@@ -1536,7 +1667,8 @@ m_ResolvedPackages:
     - 1.9.7
     - 1.9.8
     - 1.9.9
-    recommended: 1.9.9
+    - 1.9.10
+    recommended: 1.9.10
     deprecated:
     - 1.8.0-pre.1
   dependencies:
@@ -4367,6 +4499,67 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 2.0.1
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  fingerprint: 
+- packageId: com.autodesk.fbx@4.2.1
+  testable: 0
+  isDirectDependency: 0
+  version: 4.2.1
+  source: 1
+  resolvedPath: C:\Users\drtie\Documents\! Universidade\COMP3000\COMP3000\Unity Build\Cherophobia\Library\PackageCache\com.autodesk.fbx@4.2.1
+  assetPath: Packages/com.autodesk.fbx
+  name: com.autodesk.fbx
+  displayName: Autodesk FBX SDK for Unity
+  author:
+    name: Unity
+    email: 
+    url: 
+  category: 
+  type: 
+  description: "This package provides Unity C# bindings to the Autodesk\xAE FBX\xAE
+    SDK."
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 4.2.1
+    compatible:
+    - 4.2.1
+    recommended: 4.2.1
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - fbx
+  - animation
+  - modeling
+  - maya
+  - max
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: https://docs.unity3d.com/Packages/com.autodesk.fbx@4.2/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/com.autodesk.fbx.git
+    revision: 0d5f364e4c87bd0b741293e1abd178b456e7338c
+    path: 
+  unityLifecycle:
+    version: 4.2.1
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
