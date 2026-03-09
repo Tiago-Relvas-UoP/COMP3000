@@ -16,10 +16,13 @@ public class RemovableItems : MonoBehaviour
     [Header("Bools")]
     [SerializeField] public bool interactable;
 
+    private bool _playerEscaped;
+
     // Start is called before the first frame update
     private void Start()
     {
         interactable = false;
+        _playerEscaped = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -95,6 +98,7 @@ public class RemovableItems : MonoBehaviour
                 {
                     item.SetActive(false);
                     interactText.SetActive(false);
+                    _playerEscaped = true;
                 }
 
                 break;

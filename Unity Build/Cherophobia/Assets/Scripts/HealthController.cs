@@ -31,6 +31,11 @@ public class HealthController : MonoBehaviour
         {
             SelfInjure();
         }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ReceiveDamage(9999);
+        }
     }
 
     void UpdateVisuals() // Update visual indicator for health level
