@@ -60,30 +60,30 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.50f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\TriggerTrap.cs" />
     <Compile Include="Assets\Flashlight.cs" />
     <Compile Include="Assets\Scripts\HealthController.cs" />
-    <Compile Include="Assets\Scripts\PlayerCam.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\HidingPlace.cs" />
-    <Compile Include="Assets\KeyItem.cs" />
     <Compile Include="Assets\Scripts\FuseBox.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\RemovableItems.cs" />
     <Compile Include="Assets\Scripts\CollectFuse.cs" />
-    <Compile Include="Assets\Scripts\EnemyScript.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
-    <Compile Include="Assets\TrapRoom.cs" />
     <Compile Include="Assets\Scripts\HappinessController.cs" />
-    <Compile Include="Assets\Scripts\OpenMaster.cs" />
-    <Compile Include="Assets\Scripts\CollectBar.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\HappinessTrap.cs" />
     <Compile Include="Assets\Scripts\MoveCamera.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\TriggerTrap.cs" />
+    <Compile Include="Assets\Scripts\PlayerCam.cs" />
+    <Compile Include="Assets\KeyItem.cs" />
+    <Compile Include="Assets\RemovableItems.cs" />
+    <Compile Include="Assets\Scripts\EnemyScript.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\TrapRoom.cs" />
+    <Compile Include="Assets\Scripts\OpenMaster.cs" />
+    <Compile Include="Assets\Scripts\CollectBar.cs" />
     <Compile Include="Assets\Scripts\CodePad.cs" />
     <Compile Include="Assets\Scripts\CollectCode.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -907,6 +907,10 @@
       <Project>{7CE9FD96-E5D8-BECD-B95C-97A71C6146E3}</Project>
       <Name>Unity.RenderPipelines.Universal.Config.Runtime.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Formats.Fbx.Runtime.Player.csproj">
+      <Project>{FD6D770D-A458-F63F-8018-51BF79D63EBF}</Project>
+      <Name>Unity.Formats.Fbx.Runtime.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.Player.csproj">
       <Project>{3F8E862B-9026-DBFF-250C-6B0C40861561}</Project>
       <Name>Unity.VisualScripting.Flow.Player</Name>
@@ -922,6 +926,10 @@
     <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.Player.csproj">
       <Project>{31234E57-CB77-9080-2492-CB3A80CF67FE}</Project>
       <Name>Unity.RenderPipelines.Core.ShaderLibrary.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Autodesk.Fbx.Player.csproj">
+      <Project>{0D88F680-D645-E396-03C8-98B29029AC63}</Project>
+      <Name>Autodesk.Fbx.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Player.csproj">
       <Project>{BE944BF5-D7F5-82A8-0B41-4709975D5712}</Project>
