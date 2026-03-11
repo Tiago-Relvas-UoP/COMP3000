@@ -24,6 +24,10 @@ public class HappinessController : MonoBehaviour
     public int decayRate = 0;
     private float timeSinceLastIncrease = 0.0f;
 
+    [Header("Sound Settings")]
+    public AudioSource audioSource;
+    public float maxVolume = 0.5f;
+
     [Header("Visual Overlay")]
     public HealthBar healthBar;
 
@@ -58,8 +62,10 @@ public class HappinessController : MonoBehaviour
                 DecreaseHappiness(decayRate);
             }
         }
-       
 
+        audioSource.volume = (happinessSlider / 100) * maxVolume;
+       
+        // Debug
         if (Input.GetKeyDown(KeyCode.L))
         {
             IncreaseHappiness(20);

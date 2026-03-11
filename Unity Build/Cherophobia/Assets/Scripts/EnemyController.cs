@@ -32,12 +32,13 @@ public class EnemyController : MonoBehaviour
 
     private NavMeshAgent _agent; // NavMeshAgent Component.
     private Animator _animator; // Animator Component.
-    private EnemyState _state = EnemyState.Patrolling; // Set to Patrolling by default.
+    public EnemyState _state = EnemyState.Patrolling; // Set to Patrolling by default.
     private int _currentPatrolIndex; // Stores the current patrol point.
-    private bool _isWaiting; // Determines if Enemy is waiting or not.
+    public bool _isWaiting; // Determines if Enemy is waiting or not.
     private float _timeSinceLostPlayer; // Stores in a float (that is incremented with delta Time) how much time has passed since Enemy has lost player in their LoS.
-    private bool _isAttacking; // Determines if Enemy is currently mid-attack or not.
+    public bool _isAttacking; // Determines if Enemy is currently mid-attack or not.
     private EnemyState m_storestate;
+    public bool isChasing;
 
     // Called before Start()
     private void Awake()
@@ -142,7 +143,11 @@ public class EnemyController : MonoBehaviour
     private void OnAttackAnimationEnd()
     {
         _isAttacking = false;
-        healthController.ReceiveDamage(25); // Note to self: Change to variable
+    }
+
+    private void DamagePlayer() 
+    {
+        healthController.ReceiveDamage(25);
     }
 
     // Method called to set agent destination to current players position

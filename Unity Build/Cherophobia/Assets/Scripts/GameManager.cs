@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Master Door
     [Header("Master Door")]
     [SerializeField] public bool IsMasterUnlocked;
-    [SerializeField] public bool placedFuse;
+    [SerializeField] public int placedFuses;
     [SerializeField] public int removedPlanks;
     [SerializeField] public bool placedCode;
 
@@ -27,8 +27,11 @@ public class GameManager : MonoBehaviour
     [Header("Is Player Hiding?")]
     [SerializeField] public bool hidingInLocker;
 
-    private bool _playerEscaped;
+    public int currentFuses;
+    public int currentCrowbars;
+    public int currentCodes;
 
+    public bool playerEscaped;
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +39,15 @@ public class GameManager : MonoBehaviour
         // Reset time scale
         Time.timeScale = 1f;
 
-        _playerEscaped = false;
+        playerEscaped = false;
         IsMasterUnlocked = false;
 
+        // No items
         hasFuse = false;
         hasCrowbar = false;
         hasCode = false;
 
-        placedFuse = false;
+        placedFuses = 0;
         removedPlanks = 0;
         placedCode = false;
 
@@ -53,12 +57,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (placedFuse && removedPlanks == 3 && placedCode)
+        if (currentFuses > 0) hasFuse = true;
+        if (currentCrowbars > 0) hasCrowbar = true;
+        if (currentCodes > 0) hasCode = true;
+
+
+        if (placedFuses == 3 && removedPlanks == 3 && placedCode)
         {
             IsMasterUnlocked = true; // Makes Master Door available for interaction
         }
 
-        if (_playerEscaped)
+        if (playerEscaped)
         {
             pauseMenu.WinScreen();
         }
@@ -68,10 +77,5 @@ public class GameManager : MonoBehaviour
             pauseMenu.GameOverScreen();
         }
 
-        // Debug
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            _playerEscaped = true;
-        }
     }
 }

@@ -11,6 +11,8 @@ TagManager:
   - CollectibleCode
   - Planks
   - MainCode
+  - GameManager
+  - InteractionUI
   layers:
   - Default
   - TransparentFX

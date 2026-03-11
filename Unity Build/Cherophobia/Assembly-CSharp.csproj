@@ -60,31 +60,35 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.50f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Flashlight.cs" />
     <Compile Include="Assets\Scripts\HealthController.cs" />
-    <Compile Include="Assets\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\EnemyFootsteps.cs" />
+    <Compile Include="Assets\Scripts\TrapRoom.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\HidingPlace.cs" />
-    <Compile Include="Assets\Scripts\FuseBox.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\CollectFuse.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\HappinessController.cs" />
+    <Compile Include="Assets\Scripts\Interactions\Fusebox.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\HappinessTrap.cs" />
     <Compile Include="Assets\Scripts\MoveCamera.cs" />
-    <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Flashlight.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\TriggerTrap.cs" />
+    <Compile Include="Assets\Scripts\Interactions\WoodenPlanks.cs" />
     <Compile Include="Assets\Scripts\PlayerCam.cs" />
-    <Compile Include="Assets\KeyItem.cs" />
-    <Compile Include="Assets\RemovableItems.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\TrapRoom.cs" />
+    <Compile Include="Assets\Scripts\PlayerFootsteps.cs" />
+    <Compile Include="Assets\Scripts\KeyItem.cs" />
     <Compile Include="Assets\Scripts\OpenMaster.cs" />
     <Compile Include="Assets\Scripts\CollectBar.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\TriggerTrap.cs" />
     <Compile Include="Assets\Scripts\CodePad.cs" />
+    <Compile Include="Assets\Scripts\Interactions\MasterDoor.cs" />
     <Compile Include="Assets\Scripts\CollectCode.cs" />
   </ItemGroup>
   <ItemGroup>
