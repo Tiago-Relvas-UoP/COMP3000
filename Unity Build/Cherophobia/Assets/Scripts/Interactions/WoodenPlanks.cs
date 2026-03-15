@@ -6,6 +6,7 @@ public class WoodenPlanks : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public GameObject interactionUI;
+    [SerializeField] public AudioClip PlanksSFX;
     [SerializeField] private GameManager gameManager;
 
     [Header("Item Properties")]
@@ -53,6 +54,7 @@ public class WoodenPlanks : MonoBehaviour
             {
                 if (gameManager.hasCrowbar) 
                 {
+                    AudioManager.instance.PlaySFX(PlanksSFX);
                     gameManager.removedPlanks++;
                     gameManager.currentCrowbars--;
                     woodenPlank.SetActive(false);

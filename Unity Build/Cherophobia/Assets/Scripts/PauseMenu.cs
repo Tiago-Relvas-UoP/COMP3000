@@ -11,18 +11,22 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public static bool isPaused;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         winScreen.SetActive(false);
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameManager.IsKeypadBeingUsed) 
         {
             if (isPaused) 
             {

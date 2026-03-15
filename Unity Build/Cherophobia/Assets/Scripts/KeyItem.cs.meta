@@ -3,7 +3,11 @@ guid: b5be8de0e011a074da3dc6b5a090339e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - interactionUI: {instanceID: 0}
+  - gameManager: {instanceID: 0}
+  - grabItemSFX: {fileID: 8300000, guid: a2e24404157c14a45912eab26f903eb5, type: 3}
+  - item: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -28,11 +28,12 @@ public class HappinessTrap : MonoBehaviour
     {
         bool initialDebug = false;
 
+        /*
         if (!initialDebug)
         {
             Debug.Log("Player has entered Trap zone!");
             initialDebug = !initialDebug; // Flip bool value
-        }
+        }*/
 
         if (collider.gameObject.tag == "Player")
         {

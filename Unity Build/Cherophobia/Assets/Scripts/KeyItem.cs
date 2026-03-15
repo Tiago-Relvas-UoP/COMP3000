@@ -7,6 +7,7 @@ public class KeyItem : MonoBehaviour
     [Header("References")]
     [SerializeField] public GameObject interactionUI;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] public AudioClip grabItemSFX;
 
     [Header("Item Properties")]
     [SerializeField] private GameObject item;
@@ -22,7 +23,6 @@ public class KeyItem : MonoBehaviour
     {
         item = this.gameObject;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
         interactable = false;
     }
 
@@ -51,6 +51,7 @@ public class KeyItem : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                AudioManager.instance.PlaySFX(grabItemSFX);
                 ObtainItem(itemType);
             }
         }

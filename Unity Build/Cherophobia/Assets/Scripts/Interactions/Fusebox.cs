@@ -15,6 +15,7 @@ public class Fusebox : MonoBehaviour
     [SerializeField] public bool interactable;
 
     private int _fuseIndex;
+    private AudioSource _audioSource;
 
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class Fusebox : MonoBehaviour
 
         fuseMesh = this.GetComponent<MeshRenderer>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        _audioSource = this.GetComponent<AudioSource>();
 
         interactionUI.SetActive(false);
     }
@@ -60,6 +62,8 @@ public class Fusebox : MonoBehaviour
                     gameManager.currentFuses--;
                     fuseMesh.enabled = true;
                     interactionUI.SetActive(false);
+
+                    _audioSource.Play();
                 }
             }
         }

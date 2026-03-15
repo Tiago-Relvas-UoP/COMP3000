@@ -13,6 +13,10 @@ TagManager:
   - MainCode
   - GameManager
   - InteractionUI
+  - BlockedDoor
+  - TrapRoomLight
+  - TrapGate
+  - TrapRoomText
   layers:
   - Default
   - TransparentFX

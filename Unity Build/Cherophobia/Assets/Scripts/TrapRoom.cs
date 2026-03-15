@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrapRoom : MonoBehaviour
@@ -9,13 +11,21 @@ public class TrapRoom : MonoBehaviour
     [SerializeField] public GameObject DoorBlock;
     [SerializeField] public GameObject HappinessTrap;
     [SerializeField] public GameObject FakeItem;
+    [SerializeField] public TextMeshPro TakeThisText;
 
     [Header("Properties")]
     [SerializeField] public float trapDuration = 5.0f;
+    [SerializeField] public float rangeDuration = 10.0f;
     [SerializeField] public bool trapActive;
 
-    public bool isPlayerTrapped = false;
-    public float _timeSincePlayerTrapped = 0.0f;
+    private bool isPlayerTrapped = false;
+    private float _timeSincePlayerTrapped = 0.0f;
+
+    private MeshRenderer WallText;
+    private Material glowMaterial;
+
+    private Light _light;
+    private float m_previousRange;
 
     // Start is called before the first frame update
     private void Start()
@@ -25,6 +35,8 @@ public class TrapRoom : MonoBehaviour
 
         DoorBlock.SetActive(false);
         HappinessTrap.SetActive(false);
+
+        _light = GameObject.FindWithTag("TrapRoomLight").GetComponent<Light>();
     }
 
     private void OnTriggerEnter(Collider trapCollider)
@@ -37,6 +49,12 @@ public class TrapRoom : MonoBehaviour
 
             DoorBlock.SetActive(true);
             HappinessTrap.SetActive(true);
+
+            _light.color = new Color32(255, 112, 112, 255);
+            m_previousRange = _light.range;
+            _light.range = 20f;
+
+            TakeThisText.text = "HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN";
             // DoorBlock.SetActive(false);
         }
     }
@@ -50,8 +68,14 @@ public class TrapRoom : MonoBehaviour
 
         if (_timeSincePlayerTrapped >= trapDuration)
         {
-            isPlayerTrapped = false;
             DoorBlock.SetActive(false);
         }
+
+        if (_timeSincePlayerTrapped >= rangeDuration)
+        {
+            _light.range = m_previousRange;
+            isPlayerTrapped = false;
+        }
+        
     }
 }

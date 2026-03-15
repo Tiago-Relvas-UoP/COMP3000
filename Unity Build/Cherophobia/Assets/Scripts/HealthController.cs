@@ -5,15 +5,16 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     [Header("Health Properties")]
-    public float maxHealth = 100f; // Max health value
+    [SerializeField] public float maxHealth = 100f; // Max health value
     [Range(0f, 100f)]
-    public float currentHealth; // Current health
+    [SerializeField] public float currentHealth; // Current health
 
     [Header("Visual Overlay")]
-    public HealthBar healthBar;
+    [SerializeField] public HealthBar healthBar;
 
     [Header("References")]
-    public HappinessController happinessController;
+    [SerializeField] public HappinessController happinessController;
+    [SerializeField] public AudioClip selfInjureSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class HealthController : MonoBehaviour
             SelfInjure();
         }
 
+        // Debug - Remove before playtest
         if (Input.GetKeyDown(KeyCode.O))
         {
             ReceiveDamage(9999);
@@ -56,7 +58,8 @@ public class HealthController : MonoBehaviour
         {
             ReceiveDamage(25);
             happinessController.DecreaseHappiness(25);
-            Debug.Log("Self-injure activated.");
+            AudioManager.instance.PlaySFX(selfInjureSFX);
+            Debug.Log("Self-injure activated");
         } else
         {
             Debug.Log("Self-injure error: Player either is too low, or has no Happiness at all.");

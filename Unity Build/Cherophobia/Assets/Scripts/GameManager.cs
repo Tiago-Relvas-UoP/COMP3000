@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public HealthController healthController;
     [SerializeField] public PauseMenu pauseMenu;
+    [SerializeField] public AudioMixer audioSFX;
     private GameObject MasterDoor;
     private GameObject hidingSpots;
+
     
     // Master Door
     [Header("Master Door")]
@@ -24,14 +27,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool hasCrowbar;
     [SerializeField] public bool hasCode;
 
-    [Header("Is Player Hiding?")]
+    [Header("Game Interactions")]
     [SerializeField] public bool hidingInLocker;
+    [SerializeField] public bool IsKeypadBeingUsed;
 
-    public int currentFuses;
-    public int currentCrowbars;
-    public int currentCodes;
+    [Header("Items")]
+    [SerializeField] public int currentFuses;
+    [SerializeField] public int currentCrowbars;
+    [SerializeField] public int currentCodes; // not used
 
-    public bool playerEscaped;
+    [Header("Has player Escaped?")]
+    [SerializeField] public bool playerEscaped;
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +64,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (currentFuses > 0) hasFuse = true;
+        else if (currentFuses <= 0) hasFuse = false;
+
         if (currentCrowbars > 0) hasCrowbar = true;
-        if (currentCodes > 0) hasCode = true;
+        else if (currentCrowbars <= 0) hasCrowbar = false;
+
+        switch (Time.timeScale) 
+        {
+            case 1f:
+                AudioListener.pause = false;
+                break;
+
+            case 0f:
+                AudioListener.pause = true;
+                break;
+        }
 
 
         if (placedFuses == 3 && removedPlanks == 3 && placedCode)
@@ -76,6 +95,5 @@ public class GameManager : MonoBehaviour
         {
             pauseMenu.GameOverScreen();
         }
-
     }
 }
