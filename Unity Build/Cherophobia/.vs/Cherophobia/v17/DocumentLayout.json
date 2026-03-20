@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|c:\\users\\drtie\\documents\\! universidade\\comp3000\\comp3000\\unity build\\cherophobia\\assets\\fpsmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\fpsmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\assets\\scripts\\interactions\\fusebox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\interactions\\fusebox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,19 +15,19 @@
       "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\interactions\\woodenplanks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|c:\\users\\drtie\\documents\\! universidade\\comp3000\\comp3000\\unity build\\cherophobia\\assets\\scripts\\keypad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\assets\\scripts\\keypad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\keypad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|c:\\users\\drtie\\documents\\! universidade\\comp3000\\comp3000\\unity build\\cherophobia\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|c:\\users\\drtie\\documents\\! universidade\\comp3000\\comp3000\\unity build\\cherophobia\\assets\\scripts\\pausemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\assets\\scripts\\pausemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\pausemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|c:\\users\\drtie\\documents\\! universidade\\comp3000\\comp3000\\unity build\\cherophobia\\assets\\scripts\\healthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\assets\\scripts\\healthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2640819-36E4-1367-B36C-B16A2D856384}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\healthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -46,11 +50,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "FpsMovement.cs",
+              "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\FpsMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\FpsMovement.cs",
+              "ToolTip": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\FpsMovement.cs",
+              "RelativeToolTip": "Assets\\FpsMovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T15:29:55.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Keypad.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\Keypad.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Keypad.cs",
@@ -58,12 +75,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Keypad.cs",
               "ViewState": "AgIAAEcAAAAAAAAAAAAIwFcAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T17:05:28.334Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T17:05:28.334Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PauseMenu.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\PauseMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PauseMenu.cs",
@@ -71,12 +87,11 @@
               "RelativeToolTip": "Assets\\Scripts\\PauseMenu.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T17:02:41.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T17:02:41.584Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HealthController.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\HealthController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\HealthController.cs",
@@ -84,12 +99,11 @@
               "RelativeToolTip": "Assets\\Scripts\\HealthController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T16:39:53.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T16:39:53.988Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "TrapRoom.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\TrapRoom.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\TrapRoom.cs",
@@ -97,12 +111,11 @@
               "RelativeToolTip": "Assets\\Scripts\\TrapRoom.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAADgAAABfAQAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-14T23:04:58.194Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-14T23:04:58.194Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MasterDoor.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\Interactions\\MasterDoor.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interactions\\MasterDoor.cs",
@@ -110,12 +123,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Interactions\\MasterDoor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-11T21:51:21.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-11T21:51:21.256Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Fusebox.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\Interactions\\Fusebox.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interactions\\Fusebox.cs",
@@ -123,12 +135,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Interactions\\Fusebox.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAgwDoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-11T21:36:43.915Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-11T21:36:43.915Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "WoodenPlanks.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\Interactions\\WoodenPlanks.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interactions\\WoodenPlanks.cs",
@@ -136,12 +147,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Interactions\\WoodenPlanks.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwA4AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-11T21:33:38.468Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-11T21:33:38.468Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
@@ -149,12 +159,11 @@
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAQwEoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-11T20:59:45.823Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-11T20:59:45.823Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "KeyItem.cs",
               "DocumentMoniker": "C:\\Users\\drtie\\Documents\\! Universidade\\COMP3000\\COMP3000\\Unity Build\\Cherophobia\\Assets\\Scripts\\KeyItem.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\KeyItem.cs",
@@ -162,8 +171,7 @@
               "RelativeToolTip": "Assets\\Scripts\\KeyItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-11T20:49:00.885Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-11T20:49:00.885Z"
             }
           ]
         }
