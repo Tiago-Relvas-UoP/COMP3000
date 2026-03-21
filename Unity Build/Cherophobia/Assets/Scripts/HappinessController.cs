@@ -27,6 +27,10 @@ public class HappinessController : MonoBehaviour
     [Header("Sound Settings")]
     public AudioSource audioSource;
     public float maxVolume = 0.5f;
+    public float smoothness = 0.6f;
+    private float _smoothedVolume;
+    private float _velocity;
+
 
     [Header("Visual Overlay")]
     public HealthBar healthBar;
@@ -63,8 +67,12 @@ public class HappinessController : MonoBehaviour
             }
         }
 
-        audioSource.volume = (happinessSlider / 100) * maxVolume;
-       
+        float targetVolume = (happinessSlider / 100) * maxVolume;
+        _smoothedVolume = Mathf.SmoothDamp(audioSource.volume, targetVolume, ref _velocity, smoothness);
+        audioSource.volume = _smoothedVolume;
+
+        // audioSource.volume = (happinessSlider / 100) * maxVolume;
+
         // Debug
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -76,18 +84,21 @@ public class HappinessController : MonoBehaviour
     void UpdateVisuals() // Update visual indicator for happiness level
     {
         happinessValue = happinessSlider;
-        healthBar.SetHealth(happinessSlider);
+        healthBar.SetHealth(happinessSlider); // "Health Bar" refers to a misnamed components that changes visuals. Name change pending once I organize project
     }
 
     public void IncreaseHappiness(int addedHap)
     {
+
         happinessSlider += addedHap;
         timeSinceLastIncrease = 0.0f;
+        
         // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
     }
 
     public void DecreaseHappiness(int addedHap)
     {
+
         happinessSlider -= addedHap;
         // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
     }

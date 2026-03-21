@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639096178576489029
-    m_Hash: 1850338200
+      ticks: 639096331763980050
+    m_Hash: 1712919644
   m_LockFileStatus:
     m_FilePath: C:/Users/drtie/Documents/! Universidade/COMP3000/COMP3000/Unity Build/Cherophobia/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639096178576902610
-    m_Hash: 1877825231
+      ticks: 639096331764071882
+    m_Hash: 1617970779
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -125,12 +125,12 @@ m_ResolvedPackages:
   isDeprecated: 0
   deprecationMessage: 
   fingerprint: 
-- packageId: com.unity.cinemachine@2.10.7
+- packageId: com.unity.cinemachine@3.1.4
   testable: 0
   isDirectDependency: 1
-  version: 2.10.7
+  version: 3.1.4
   source: 1
-  resolvedPath: C:\Users\drtie\Documents\! Universidade\COMP3000\COMP3000\Unity Build\Cherophobia\Library\PackageCache\com.unity.cinemachine@2.10.7
+  resolvedPath: C:\Users\drtie\Documents\! Universidade\COMP3000\COMP3000\Unity Build\Cherophobia\Library\PackageCache\com.unity.cinemachine@3.1.4
   assetPath: Packages/com.unity.cinemachine
   name: com.unity.cinemachine
   displayName: Cinemachine
@@ -140,10 +140,10 @@ m_ResolvedPackages:
     url: 
   category: cinematography
   type: 
-  description: "Smart camera tools for passionate creators. \n\n--- ATTENTION ---\nUpgrading
-    a project from Cinemachine 2.x to Cinemachine 3.x is not automatic and not trivial.\nDon't
-    do it unless you're willing to put in the required effort.\n\n> For more details,
-    refer to the upgrade guide:\nhttps://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/CinemachineUpgradeFrom2.html\n--------------------\n\n\n"
+  description: "Smart camera tools for passionate creators. \n\nCinemachine 3 is
+    a newer and better version of Cinemachine, but upgrading an existing project
+    from 2.X will likely require some effort.  If you're considering upgrading an
+    older project, please see our upgrade guide in the user manual."
   status: 0
   errors: []
   versions:
@@ -262,17 +262,23 @@ m_ResolvedPackages:
     recommended: 2.10.7
     deprecated: []
   dependencies:
-  - name: com.unity.test-framework
-    version: 1.1.31
-  resolvedDependencies:
-  - name: com.unity.test-framework
-    version: 1.1.33
-  - name: com.unity.ext.nunit
-    version: 1.0.6
+  - name: com.unity.splines
+    version: 2.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
-  - name: com.unity.modules.jsonserialize
+  resolvedDependencies:
+  - name: com.unity.splines
+    version: 2.6.1
+  - name: com.unity.ugui
     version: 1.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.mathematics
+    version: 1.2.6
+  - name: com.unity.settings-manager
+    version: 2.0.1
   keywords:
   - camera
   - follow
@@ -306,13 +312,13 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 639093556826400000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.cinemachine@2.10/manual/index.html
+  datePublishedTicks: 638851617780470000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/com.unity.cinemachine.git
-    revision: 4be77edd6ca4aaed917a706557301ad78d57c550
+    revision: b5d928f5923583585b11d5c17531ff59c8c971c9
     path: 
   unityLifecycle:
     version: 2.10.1
@@ -4808,6 +4814,113 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 4.2.1
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  fingerprint: 
+- packageId: com.unity.splines@2.6.1
+  testable: 0
+  isDirectDependency: 0
+  version: 2.6.1
+  source: 1
+  resolvedPath: C:\Users\drtie\Documents\! Universidade\COMP3000\COMP3000\Unity Build\Cherophobia\Library\PackageCache\com.unity.splines@2.6.1
+  assetPath: Packages/com.unity.splines
+  name: com.unity.splines
+  displayName: Splines
+  author:
+    name: 
+    email: 
+    url: 
+  category: Tool
+  type: tool
+  description: Work with curves and paths. Use the Splines package to generate objects
+    and behaviors along paths, create trajectories, and draw shapes.
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 0.1.0-preview.1
+    - 1.0.0-pre.5
+    - 1.0.0-pre.7
+    - 1.0.0-pre.8
+    - 1.0.0-pre.9
+    - 1.0.0
+    - 1.0.1
+    - 2.0.0-pre.2
+    - 2.0.0-pre.4
+    - 2.0.0
+    - 2.1.0
+    - 2.2.0
+    - 2.2.1
+    - 2.3.0
+    - 2.4.0
+    - 2.5.1
+    - 2.5.2
+    - 2.6.0
+    - 2.6.1
+    - 2.7.1
+    - 2.7.2
+    - 2.8.0
+    - 2.8.1
+    - 2.8.2
+    - 2.8.3
+    - 2.8.4
+    compatible:
+    - 2.6.1
+    - 2.7.1
+    - 2.7.2
+    - 2.8.0
+    - 2.8.1
+    - 2.8.2
+    - 2.8.3
+    - 2.8.4
+    recommended: 2.6.1
+    deprecated: []
+  dependencies:
+  - name: com.unity.ugui
+    version: 1.0.0
+  - name: com.unity.mathematics
+    version: 1.2.1
+  - name: com.unity.settings-manager
+    version: 1.0.3
+  resolvedDependencies:
+  - name: com.unity.ugui
+    version: 1.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.mathematics
+    version: 1.2.6
+  - name: com.unity.settings-manager
+    version: 2.0.1
+  keywords:
+  - spline
+  - curve
+  - path
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638522292040000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.splines.git
+    revision: f77ddc46ebeef1a8dca1264827b93dbec50d3772
+    path: 
+  unityLifecycle:
+    version: 2.6.1
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
