@@ -79,6 +79,8 @@ public class HappinessController : MonoBehaviour
             IncreaseHappiness(20);
         }
 
+        if (happinessSlider > 100f) happinessSlider = 100f;
+        if (happinessSlider < 0f) happinessSlider = 0f;
     }
 
     void UpdateVisuals() // Update visual indicator for happiness level

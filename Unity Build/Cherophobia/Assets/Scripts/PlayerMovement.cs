@@ -1,58 +1,93 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed;
-    public float walkSpeed;
-    public float sprintSpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] public float walkSpeed;
+    [SerializeField] public float sprintSpeed;
+    [SerializeField] public float crouchSpeed;
+    [SerializeField] public float groundDrag; // Drag
 
-    // Drag
-    public float groundDrag;
+    [Header("Stamina Curve")]
+    [SerializeField] public float baseStamina = 100f;
+    [SerializeField] public float minStamina = 20f;
+    [SerializeField] public float staminaFallofRate = 0.1386f;
 
-    [Header("Movement Modifiers")]
-    private float happinessModifier; // This value rips the value from happinessValue in the HappinessController script
-    public float hapMultiplier; // This value manages how much the happinessModifier should affect movement.
+    [Header("Stamina Settings")]
+    [SerializeField] public float currentStamina = 100f; // Dont change in inspector
+    [SerializeField] public float currentMaxStamina; // Dont change in inspector
+    [SerializeField] public float drainRate = 1f;
+    [SerializeField] public float rechargeRate = 1f;
+    [SerializeField] public float rechargeCooldown = 5f;
+    [SerializeField] public float sprintCooldown = 1f;
+    [SerializeField] public float fatigueTimer = 0f;
+    [SerializeField] public float exponentialPenalty = 1f;
+
+    [Header("Exhausted SFX")]
+    [SerializeField] public AnimationCurve volumeCurve;
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] public float maximumVolume = 0.3f;
+    [SerializeField, Range(0f, 1f)] public float smoothing = 0.15f;
+    public float _progress;
+    private float _velocity;
+
+    private bool _isFatigued;
+    private bool isSprinting;
+    private bool _sprintInCooldown;
+    private float _timeSinceStopSprint;
+
+
+    // These values are added on top of the default sprint speed (apart from crouch).
+    [Header("Happiness Speed Modifiers")]
+    [SerializeField] public float unhappySpeed;
+    [SerializeField] public float neutralSpeed;
+    [SerializeField] public float happySpeed;
+    [SerializeField] public float overjoyedSpeed;
 
     [Header("Jumping")]
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
-    bool readyToJump = true;
+    [SerializeField] public float jumpForce;
+    [SerializeField] public float jumpCooldown;
+    [SerializeField] public float airMultiplier;
+    [SerializeField] private bool readyToJump = true;
 
     [Header("Crouching")]
-    public float crouchSpeed;
-    public float crouchYScale;
-    private float startYScale;
+    [SerializeField] public float crouchYScale;
+    [SerializeField] private float startYScale;
 
     [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftShift;
-    public KeyCode crouchKey = KeyCode.C;
+    [SerializeField] public KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] public KeyCode sprintKey = KeyCode.LeftShift;
+    [SerializeField] public KeyCode crouchKey = KeyCode.C;
 
     [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
-    public bool grounded;
+    [SerializeField] public float playerHeight;
+    [SerializeField] public LayerMask whatIsGround;
+    [SerializeField] public bool grounded;
 
     [Header("Slope Handling")]
-    public float maxSlopeAngle;
-    private RaycastHit slopeHit;
-    private bool exitingSlope;
+    [SerializeField] public float maxSlopeAngle;
+    [SerializeField] private RaycastHit slopeHit;
+    [SerializeField] private bool exitingSlope;
 
-    public Transform orientation;
+    [SerializeField] public Transform orientation;
 
-    float horizontalInput;
-    float verticalInput;
+    private float _horizontalInput;
+    private float _verticalInput;
+
+    private HappinessController _happinessController;
+    private float _currentSpeedModifier;
 
     public Vector3 moveDirection;
-
-    public Rigidbody rb;
-
+    private Rigidbody rb;
     public MovementState state;
+
+    private float _time;
+
     public enum MovementState
     {
         walking,
@@ -67,6 +102,10 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         startYScale = transform.localScale.y;
+        _happinessController = this.GetComponent<HappinessController>();
+
+        _timeSinceStopSprint = 0.0f;
+        currentMaxStamina = baseStamina;
     }
 
     // Update is called once per frame
@@ -74,11 +113,20 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // Self-note: Changed to 0.3f from 0.2f
 
-        happinessModifier = HappinessController.happinessValue * hapMultiplier;
+        currentMaxStamina = minStamina + (baseStamina - minStamina) * Mathf.Exp(-staminaFallofRate * _currentSpeedModifier);
+        isSprinting = Input.GetKey(sprintKey) && currentStamina > 0f && !_isFatigued && !_sprintInCooldown;
+
+        if (Input.GetKeyUp(sprintKey) && currentStamina > 0f && !_isFatigued) 
+        {
+            _sprintInCooldown = true;
+        }                    
 
         MyInput();
         SpeedControl();
         StateHandler();
+        HappinessModifier();
+        HandleStamina();
+        ExhaustedSound();
 
         // handle drag
         if (grounded)
@@ -99,8 +147,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        _horizontalInput = Input.GetAxisRaw("Horizontal");
+        _verticalInput = Input.GetAxisRaw("Vertical");
 
         // when player jumps
         if(Input.GetKey(jumpKey) && readyToJump && grounded)
@@ -131,17 +179,18 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(crouchKey)) // Crouching
         {
             state = MovementState.crouching;
-            moveSpeed = crouchSpeed + (happinessModifier * 2);
+            moveSpeed = crouchSpeed;
         }
         else if (grounded && Input.GetKey(sprintKey)) // Sprinting
         {
-            state = MovementState.sprinting;
-            moveSpeed = sprintSpeed + (happinessModifier * 2);
+            //state = MovementState.sprinting;
+            //moveSpeed = sprintSpeed;
+            HandleSprint();
         } 
         else if (grounded)
         {
             state = MovementState.walking;
-            moveSpeed = walkSpeed + (happinessModifier * 2);
+            moveSpeed = walkSpeed;
         } 
         else
         {
@@ -152,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
 
         // When on slope
         if (OnSlope() && !exitingSlope)
@@ -174,6 +223,66 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.useGravity = !OnSlope();
+    }
+
+    private void HandleSprint() 
+    {
+        if (isSprinting)
+        {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed + _currentSpeedModifier;
+            exponentialPenalty += Time.deltaTime / 20f;
+        }
+        else
+        {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+            isSprinting = false;
+        }
+    }
+
+    private void HandleStamina() 
+    {
+        if (!isSprinting && exponentialPenalty > 1f)
+        {
+            exponentialPenalty -= Time.deltaTime / 20f;
+            if (exponentialPenalty < 1) exponentialPenalty = 1f;           
+        }
+
+        if (isSprinting)
+        {
+            currentStamina -= (Time.deltaTime * drainRate * exponentialPenalty);
+        }
+        else if (!_isFatigued)
+        {
+            currentStamina += Time.deltaTime * rechargeRate;
+        }
+
+        if (currentStamina <= 0f && fatigueTimer <= 3f)
+        {
+            fatigueTimer += Time.deltaTime;
+            _isFatigued = true;
+        }
+        else if (fatigueTimer >= 3f)
+        {
+            currentStamina += Time.deltaTime * rechargeRate;
+            _isFatigued = false;
+            fatigueTimer = 0f;
+        }
+
+        if (_sprintInCooldown) 
+        {
+            _timeSinceStopSprint += Time.deltaTime;
+
+            if (_timeSinceStopSprint >= sprintCooldown) 
+            {
+                _sprintInCooldown = false;
+                _timeSinceStopSprint = 0f;
+            }
+        }
+
+        if (currentStamina < 0f) currentStamina = 0f;
+        if (currentStamina > currentMaxStamina) currentStamina = currentMaxStamina;
     }
 
     private void SpeedControl()
@@ -231,5 +340,44 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
+    private void HappinessModifier() 
+    {
+        switch (_happinessController.state) 
+        {
+            case HappinessController.HappinessState.unhappy:
+                _currentSpeedModifier = unhappySpeed;
+                break;
+
+            case HappinessController.HappinessState.neutral:
+                _currentSpeedModifier = neutralSpeed;
+                break;
+
+            case HappinessController.HappinessState.happy:
+                _currentSpeedModifier = happySpeed;
+                break;
+
+            case HappinessController.HappinessState.overjoyed:
+                _currentSpeedModifier = overjoyedSpeed;
+                break;
+        }
+
+        // Debug
+        _time += Time.deltaTime;
+
+        if (_time >= 2.0f) 
+        {
+            Debug.Log("Current Happiness: " + _happinessController.state);
+            Debug.Log("[HAPPINESS MODIFIER] Current Sprint Speed: " + (sprintSpeed + _currentSpeedModifier));
+            _time = 0.0f;
+        }
+    }
+
+    private void ExhaustedSound() 
+    {
+        _progress = Mathf.Clamp01(currentStamina / currentMaxStamina);
+        float _targetVolume = Mathf.Lerp(maximumVolume, 0.0f, volumeCurve.Evaluate(_progress));
+        audioSource.volume = Mathf.SmoothDamp(audioSource.volume, _targetVolume, ref _velocity, smoothing);
     }
 }
