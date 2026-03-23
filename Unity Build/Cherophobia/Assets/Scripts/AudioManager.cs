@@ -12,13 +12,13 @@ public class AudioManager : MonoBehaviour
         instance = this;
     }
 
-    public void PlaySFX(AudioClip audioClip, float volume = 1f, float spatialBlend = 1f, float minDist = 1f, float maxDist = 500f) 
+    public void PlaySFX(AudioClip audioClip, float volume = 1f, float spatialBlend = 1f, float minDist = 1f, float maxDist = 500f, bool muteAfterTime = false, float timeToMute = 9999f) 
     {
-        StartCoroutine(PlaySFXCoroutine(audioClip, volume, spatialBlend, minDist, maxDist));
+        StartCoroutine(PlaySFXCoroutine(audioClip, volume, spatialBlend, minDist, maxDist, muteAfterTime, timeToMute));
     }
 
     // Update is called once per frame
-    IEnumerator PlaySFXCoroutine(AudioClip audioClip, float volume = 1f, float spatialBlend = 1f, float minDist = 1f, float maxDist = 500f)
+    IEnumerator PlaySFXCoroutine(AudioClip audioClip, float volume = 1f, float spatialBlend = 1f, float minDist = 1f, float maxDist = 500f, bool muteAfterTime = false, float timeToMute = 9999f)
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.dopplerLevel = 0f;
@@ -31,7 +31,9 @@ public class AudioManager : MonoBehaviour
         audioSource.maxDistance = maxDist;
         audioSource.Play();
 
-        yield return new WaitForSeconds(audioSource.clip.length * 2);
+        if (muteAfterTime) yield return new WaitForSeconds(timeToMute);
+        else yield return new WaitForSeconds(audioSource.clip.length * 2);
+        // yield return new WaitForSeconds(audioSource.clip.length * 2);
 
         Destroy(audioSource);
     }
