@@ -253,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentStamina -= (Time.deltaTime * drainRate * exponentialPenalty);
         }
-        else if (!_isFatigued)
+        else if (!_isFatigued && !_sprintInCooldown)
         {
             currentStamina += Time.deltaTime * rechargeRate;
         }

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.Examples;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TriggerTrap : MonoBehaviour
 {
@@ -19,9 +16,14 @@ public class TriggerTrap : MonoBehaviour
 
     [Header("Audio On Trigger")]
     [SerializeField] public AudioClip triggerAudio;
+    [SerializeField, Range(0f, 1f)] public float triggerVolume;
+    [SerializeField] public AudioClip jumpscareAudio;
+    [SerializeField, Range(0f, 1f)] public float jumpscareVolume;
 
     [Header("Trigger Sprites")]
-    [SerializeField] private GameObject[] images;
+    [SerializeField] private GameObject imageHolder;
+    [SerializeField] private Sprite[] images;
+    // [SerializeField] private GameObject[] images;
     [SerializeField] private float imageDuration;
     [SerializeField] private int imageQuantity;
     [SerializeField] private float imageScale;
@@ -73,6 +75,9 @@ public class TriggerTrap : MonoBehaviour
     {
         if (isTrapActive)
         {
+            AudioManager.instance.PlaySFX(triggerAudio, triggerVolume);
+            AudioManager.instance.PlaySFX(jumpscareAudio, jumpscareVolume);
+
             happinessController.IncreaseHappiness(25);
             isTrapActive = false;
             _triggered = true;
@@ -89,9 +94,10 @@ public class TriggerTrap : MonoBehaviour
     {
         if (!_firstImageShowed) 
         {
+            imageHolder.SetActive(true);
+
             _imageIndex = Random.Range(0, images.Length);
-            ShowImage(_imageIndex);
-            //AudioManager.instance.PlaySFX(triggerAudio, 0.8f, 1f, 1f, 500f, true, imageDuration);
+            ShowImage(_imageIndex, xPositionVariant, yPositionVariant, imageScale);
 
             _firstImageShowed = true;
         }
@@ -102,11 +108,8 @@ public class TriggerTrap : MonoBehaviour
             
             if (_time > imageDuration)
             {
-                images[_imageIndex].SetActive(false);
-
                 _imageIndex = Random.Range(0, images.Length);
-                ShowImage(_imageIndex);
-                //AudioManager.instance.PlaySFX(triggerAudio, 0.8f, 1f, 1f, 500f, true, imageDuration);
+                ShowImage(_imageIndex, xPositionVariant, yPositionVariant, imageScale);
 
                 _time = 0.0f;
                 _imageCount++;
@@ -115,7 +118,7 @@ public class TriggerTrap : MonoBehaviour
 
         if (_imageCount > imageQuantity)
         {
-            images[_imageIndex].SetActive(false);
+            imageHolder.SetActive(false);
 
             _jumpscareComplete = true;
         }
@@ -132,7 +135,7 @@ public class TriggerTrap : MonoBehaviour
         if (_jumpscareComplete) 
         {
             _textTime += Time.deltaTime;
-            Debug.Log("Current Timer [Jumpscare complete]: " + _textTime);
+            //Debug.Log("Current Timer [Jumpscare complete]: " + _textTime);
 
             ShowImage(0, basePositionOffset, basePositionOffset, baseScaleOffset, NormalText);
             ShowImage(0, shadowPositionOffset, shadowPositionOffset, baseScaleOffset, ShadowText);
@@ -153,15 +156,15 @@ public class TriggerTrap : MonoBehaviour
     {
         _xPosition = Random.Range(-xVariance, xVariance);
         _yPosition = Random.Range(-yVariance, yVariance);
-        Debug.Log("X Position: " + _xPosition);
-        Debug.Log("X Position: " + _yPosition);
+        //Debug.Log("X Position: " + _xPosition);
+        //Debug.Log("X Position: " + _yPosition);
 
         if (gameObject == null) 
-        { 
-            images[index].transform.localScale = new Vector3(scale, scale, scale);
-            images[index].transform.localPosition = new Vector3(_xPosition, _yPosition, 0.0f);
+        {
+            imageHolder.GetComponent<Image>().sprite = images[_imageIndex];
+            imageHolder.transform.localScale = new Vector3(scale, scale, scale);
+            imageHolder.transform.localPosition = new Vector3(_xPosition, _yPosition, 0.0f);
 
-            images[index].SetActive(true);
         }
         else 
         {

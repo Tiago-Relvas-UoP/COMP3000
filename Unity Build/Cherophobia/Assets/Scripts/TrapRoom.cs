@@ -50,8 +50,9 @@ public class TrapRoom : MonoBehaviour
             DoorBlock.SetActive(true);
             HappinessTrap.SetActive(true);
 
-            _light.color = new Color32(255, 112, 112, 255);
             m_previousRange = _light.range;
+
+            _light.color = new Color32(255, 112, 112, 255);
             _light.range = 20f;
 
             TakeThisText.text = "HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN  HAPPINESS IS A SIN";
@@ -73,9 +74,11 @@ public class TrapRoom : MonoBehaviour
 
         if (_timeSincePlayerTrapped >= rangeDuration)
         {
+
+            Debug.Log("Light range (before): " + _light.range);
             _light.range = m_previousRange;
+            Debug.Log("Light range (after): " + _light.range);
             isPlayerTrapped = false;
-        }
-        
+        }    
     }
 }

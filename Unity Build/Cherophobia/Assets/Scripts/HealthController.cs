@@ -16,39 +16,45 @@ public class HealthController : MonoBehaviour
     [SerializeField] public HappinessController happinessController;
     [SerializeField] public AudioClip selfInjureSFX;
 
+    private float _damageModifier;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
         UpdateVisuals();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         UpdateVisuals();
+        UpdateDamageModifier();
+
+        Debug.Log("Damage Modifier: " + _damageModifier);
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             SelfInjure();
         }
-
-        // Debug - Remove before playtest
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ReceiveDamage(9999);
-        }
     }
 
-    void UpdateVisuals() // Update visual indicator for health level
+    public void UpdateVisuals() // Update visual indicator for health level
     {
         healthBar.SetHealth(currentHealth);
     }
 
     // Function that once called, reduces player hp by amount
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(int damage, bool isSelfInjure = false)
     {
-        currentHealth -= damage;
+        if (isSelfInjure)
+        {
+            currentHealth -= damage;
+        } 
+        else if (!isSelfInjure)
+        {
+            currentHealth -= damage * _damageModifier;
+        }
     }
 
     // Function that once called, reduces HP but also reduces Happiness Slider.
@@ -56,7 +62,7 @@ public class HealthController : MonoBehaviour
     { 
         if (currentHealth > 25f && happinessController.happinessSlider > 24f)
         {
-            ReceiveDamage(25);
+            ReceiveDamage(20, true);
             happinessController.DecreaseHappiness(25);
             AudioManager.instance.PlaySFX(selfInjureSFX);
             Debug.Log("Self-injure activated");
@@ -64,6 +70,28 @@ public class HealthController : MonoBehaviour
         {
             Debug.Log("Self-injure error: Player either is too low, or has no Happiness at all.");
             Debug.Log("Current Health:" + currentHealth + " && Current Happiness: " + happinessController.happinessSlider);
+        }
+    }
+
+    private void UpdateDamageModifier()
+    {
+        switch (happinessController.state)
+        {
+            case HappinessController.HappinessState.unhappy:
+                _damageModifier = 1;
+                break;
+
+            case HappinessController.HappinessState.neutral:
+                _damageModifier = 2;
+                break;
+
+            case HappinessController.HappinessState.happy:
+                _damageModifier = 3;
+                break;
+
+            case HappinessController.HappinessState.overjoyed:
+                _damageModifier = 9999; // instakill
+                break;
         }
     }
 

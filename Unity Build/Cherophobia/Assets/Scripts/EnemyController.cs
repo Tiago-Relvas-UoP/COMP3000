@@ -147,7 +147,7 @@ public class EnemyController : MonoBehaviour
 
     private void DamagePlayer() 
     {
-        healthController.ReceiveDamage(25);
+        healthController.ReceiveDamage(20);
     }
 
     // Method called to set agent destination to current players position
