@@ -15,6 +15,11 @@ public class WoodenPlanks : MonoBehaviour
     [Header("Bools")]
     [SerializeField] public bool interactable;
 
+    [Header("Failed Interaction")]
+    [SerializeField] private float textDuration;
+    [SerializeField] private string failedText;
+    private InteractionFailed _interactionFailed;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -25,6 +30,8 @@ public class WoodenPlanks : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         interactionUI.SetActive(false);
+
+        _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
     private void OnTriggerStay(Collider other)
@@ -59,6 +66,9 @@ public class WoodenPlanks : MonoBehaviour
                     gameManager.currentCrowbars--;
                     woodenPlank.SetActive(false);
                     interactionUI.SetActive(false);
+                } else 
+                {
+                    _interactionFailed.failedInteractionText(textDuration, failedText);
                 }
             }
         }

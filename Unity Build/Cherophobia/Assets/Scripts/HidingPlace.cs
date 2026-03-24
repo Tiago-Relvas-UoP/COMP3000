@@ -9,6 +9,13 @@ public class HidingPlace : MonoBehaviour
     [SerializeField] public GameObject normalPlayer, hidingPlayer;
     [SerializeField] public GameManager gameManager;
     [SerializeField] public EnemyController enemyController;
+    [SerializeField] public HappinessController happinessController;
+    [SerializeField] public GameObject hidingCamera;
+    [SerializeField] private GameObject normalCamera;
+
+    [Header("Failed Interaction")]
+    [SerializeField] private float textDuration;
+    [SerializeField] private string failedText;
 
     [Header("Transforms")]
     [SerializeField] public Transform enemyTransform;
@@ -19,12 +26,22 @@ public class HidingPlace : MonoBehaviour
     [Header("Distance")]
     [SerializeField] public float loseDistance;
 
+    public GameObject _light;
+    private InteractionFailed _interactionFailed;
+
+    private PlayerMovement _playerMovement;
 
     // Start is called before the first frame update
     private void Start()
     {
         interactable = false;
         hidingHere = false;
+
+        hidingCamera.SetActive(false);
+
+        _playerMovement = normalPlayer.GetComponentInChildren<PlayerMovement>();
+
+        _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
     private void OnTriggerStay(Collider other)
@@ -53,16 +70,28 @@ public class HidingPlace : MonoBehaviour
         { 
             if (Input.GetKeyDown(KeyCode.E)) 
             {
-                hidingHere = true;
-                gameManager.hidingInLocker = true;
+                if (happinessController.happinessSlider < 75f) 
+                {
+                    hidingHere = true;
+                    _light.SetActive(true);
+                    gameManager.hidingInLocker = true;
 
-                hideText.SetActive(false);
-                showText.SetActive(true);
+                    hideText.SetActive(false);
+                    showText.SetActive(true);
 
-                hidingPlayer.SetActive(true);
-                normalPlayer.SetActive(false);
+                    _playerMovement.enabled = false;
+                    normalCamera.SetActive(false);
 
-                interactable = false;
+                    hidingCamera.SetActive(true);
+
+                    //hidingPlayer.SetActive(true);
+                    //normalPlayer.SetActive(false);
+
+                    interactable = false;
+                } else 
+                {
+                    _interactionFailed.failedInteractionText(textDuration, failedText);
+                }
 
                 // enemyController._state = EnemyState.Patrolling;
             }
@@ -73,12 +102,18 @@ public class HidingPlace : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q)) 
             {
                 hidingHere = false;
+                _light.SetActive(false);
                 gameManager.hidingInLocker = false;
 
                 showText.SetActive(false);
 
-                normalPlayer.SetActive(true);
-                hidingPlayer.SetActive(false);
+                _playerMovement.enabled = true;
+
+                normalCamera.SetActive(true);
+                hidingCamera.SetActive(false);
+
+                //normalPlayer.SetActive(true);
+                //hidingPlayer.SetActive(false);
 
             }
         }

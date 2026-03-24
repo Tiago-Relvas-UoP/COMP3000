@@ -17,6 +17,7 @@ TagManager:
   - TrapRoomLight
   - TrapGate
   - TrapRoomText
+  - FailedText
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,6 @@ public class PlayerFootsteps : MonoBehaviour
     public AudioClip flashlightSFX;
 
     [Header("Footstep Delay")]
-    [SerializeField] public float crouchDelay = 1.0f;
     [SerializeField] public float walkDelay = 1.0f;
     [SerializeField] public float sprintDelay = 1.0f;
 
@@ -40,7 +39,6 @@ public class PlayerFootsteps : MonoBehaviour
 
             if (movement.state.Equals(PlayerMovement.MovementState.sprinting)) _footstepDelay = sprintDelay;
             else if (movement.state.Equals(PlayerMovement.MovementState.walking)) _footstepDelay = walkDelay;
-            else if (movement.state.Equals(PlayerMovement.MovementState.crouching)) _footstepDelay = crouchDelay;
 
             yield return new WaitForSeconds(_footstepDelay);
         }

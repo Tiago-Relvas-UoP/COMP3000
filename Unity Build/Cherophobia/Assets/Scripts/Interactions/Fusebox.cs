@@ -14,6 +14,11 @@ public class Fusebox : MonoBehaviour
     [Header("Bools")]
     [SerializeField] public bool interactable;
 
+    [Header("Failed Interaction")]
+    [SerializeField] private float textDuration;
+    [SerializeField] private string failedText;
+    private InteractionFailed _interactionFailed;
+
     private int _fuseIndex;
     private AudioSource _audioSource;
 
@@ -29,6 +34,8 @@ public class Fusebox : MonoBehaviour
         _audioSource = this.GetComponent<AudioSource>();
 
         interactionUI.SetActive(false);
+
+        _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
     private void OnTriggerStay(Collider other)
@@ -64,6 +71,10 @@ public class Fusebox : MonoBehaviour
                     interactionUI.SetActive(false);
 
                     _audioSource.Play();
+                }
+                else 
+                {
+                    _interactionFailed.failedInteractionText(textDuration, failedText);
                 }
             }
         }
