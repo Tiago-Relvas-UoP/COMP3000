@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class InteractionFailed : MonoBehaviour
@@ -35,12 +36,14 @@ public class InteractionFailed : MonoBehaviour
         }
     }
 
-    public void failedInteractionText(float duration, string Text) 
+    public void failedInteractionText(float duration, string Text, TMP_FontAsset font = null) 
     {
         m_TextMeshPro.text = Text;
         _duration = duration;
 
         _time = 0.0f;
-        _textShown = true;      
+        _textShown = true;
+
+        if (font != null) m_TextMeshPro.font = font;
     }
 }

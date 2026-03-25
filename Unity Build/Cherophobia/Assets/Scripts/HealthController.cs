@@ -17,12 +17,15 @@ public class HealthController : MonoBehaviour
     [SerializeField] public AudioClip selfInjureSFX;
 
     private float _damageModifier;
+    private InteractionFailed _interactionFailed;
 
     // Start is called before the first frame update
     private void Start()
     {
         currentHealth = maxHealth;
         UpdateVisuals();
+
+        _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
     // Update is called once per frame
@@ -31,9 +34,9 @@ public class HealthController : MonoBehaviour
         UpdateVisuals();
         UpdateDamageModifier();
 
-        Debug.Log("Damage Modifier: " + _damageModifier);
+        // Debug.Log("Damage Modifier: " + _damageModifier);
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             SelfInjure();
         }
@@ -45,9 +48,9 @@ public class HealthController : MonoBehaviour
     }
 
     // Function that once called, reduces player hp by amount
-    public void ReceiveDamage(int damage, bool isSelfInjure = false)
+    public void ReceiveDamage(int damage, bool isSelfInjure = false, bool insanityDamage = false)
     {
-        if (isSelfInjure)
+        if (isSelfInjure || insanityDamage)
         {
             currentHealth -= damage;
         } 
@@ -63,13 +66,15 @@ public class HealthController : MonoBehaviour
         if (currentHealth > 25f && happinessController.happinessSlider > 24f)
         {
             ReceiveDamage(20, true);
-            happinessController.DecreaseHappiness(25);
+            happinessController.DecreaseHappiness(25, true);
             AudioManager.instance.PlaySFX(selfInjureSFX);
             Debug.Log("Self-injure activated");
         } else
         {
-            Debug.Log("Self-injure error: Player either is too low, or has no Happiness at all.");
-            Debug.Log("Current Health:" + currentHealth + " && Current Happiness: " + happinessController.happinessSlider);
+            if (currentHealth <= 25f) _interactionFailed.failedInteractionText(3, "\"I'm already bleeding alot\"");
+            else if (happinessController.happinessSlider < 25f) _interactionFailed.failedInteractionText(3, "\"This is not necessary right now\"");
+            // Debug.Log("Self-injure error: Player either is too low, or has no Happiness at all.");
+            // Debug.Log("Current Health:" + currentHealth + " && Current Happiness: " + happinessController.happinessSlider);
         }
     }
 

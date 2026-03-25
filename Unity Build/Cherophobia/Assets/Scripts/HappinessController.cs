@@ -17,6 +17,14 @@ public class HappinessController : MonoBehaviour
     public float happyThreshold = 50f;
     public float overjoyedThreshold = 75f;
 
+    [Header("Insanity Settings")]
+    [SerializeField] private float insanityDeathTime = 2.0f;
+    [SerializeField] private AudioClip damageSFX;
+    [SerializeField, Range(0f, 1f)] private float damageVolume;
+
+    private float _deathTimer;
+    private HealthController _healthController;
+
     [Header("Happiness Decay")]
     public float timeToWait = 5.0f;
     public float done = 0.0f;
@@ -24,18 +32,40 @@ public class HappinessController : MonoBehaviour
     public int decayRate = 0;
     private float timeSinceLastIncrease = 0.0f;
 
-    [Header("Sound Settings")]
-    public AudioSource audioSource;
+    [Header("Happiness SFX Settings")]
+    public AudioSource audioSource; // HappinessTrack audioSource
     public float maxVolume = 0.5f;
     public float smoothness = 0.6f;
     private float _smoothedVolume;
     private float _velocity;
 
+    [Header("Laugh SFX Settings")]
+    [SerializeField] private AudioSource laughSource; 
+    [SerializeField] private AnimationCurve laughCurve;
+    [SerializeField] private float maxLaughVolume;
+    [SerializeField] private float laughSmoothness;
+
+    [Header("Heartbeat SFX Settings")]
+    [SerializeField] private AudioSource hbSource;
+    [SerializeField] private AnimationCurve hbVolumeCurve;
+    [SerializeField] private float hbVolumeSmoothness;
+    [SerializeField] private float maxHbVolume;
+    [SerializeField] private AnimationCurve hbPitchCurve; 
+    [SerializeField] private float maxHbPitch;
+    [SerializeField] private float hbPitchSmoothness;
+
+    private float _laughProgress; // laugh volume progress
+    private float _hbVolumeProgress; 
+    private float _hbPitchProgress; 
+
+    private float _laughVelocity;
+    private float _hbVolumeVelocity;
+    private float _hbPitchVelocity;      
 
     [Header("Visual Overlay")]
     public HealthBar healthBar;
-
     private float currentThreshold; // Current Happiness Threshold.
+
 
     public HappinessState state;
     public enum HappinessState
@@ -49,12 +79,17 @@ public class HappinessController : MonoBehaviour
     public void Start()
     {
         UpdateVisuals();
+
+        _deathTimer = 0.0f;
+        _healthController = this.GetComponent<HealthController>();
     }
 
     public void Update()
     {
         UpdateVisuals();
         StateHandler();
+        HeartbeatSFX();
+        LaughSFX();
 
         timeSinceLastIncrease += Time.deltaTime;
 
@@ -74,13 +109,53 @@ public class HappinessController : MonoBehaviour
         // audioSource.volume = (happinessSlider / 100) * maxVolume;
 
         // Debug
-        if (Input.GetKeyDown(KeyCode.L))
+        /*if (Input.GetKeyDown(KeyCode.L))
         {
             IncreaseHappiness(20);
+        }*/
+
+        if (happinessSlider >= 100f) 
+        {
+            _deathTimer += Time.deltaTime;
+            Debug.Log(_deathTimer + "(Death Timer)");
+
+            if (_deathTimer >= insanityDeathTime) 
+            {
+                _healthController.ReceiveDamage(10, false, true);
+                AudioManager.instance.PlaySFX(damageSFX, damageVolume);
+                _deathTimer = 0.0f;
+            }
+
+        } else 
+        {
+            _deathTimer -= Time.deltaTime;
+
+            if (_deathTimer < 0.0f) _deathTimer = 0.0f;
         }
 
         if (happinessSlider > 100f) happinessSlider = 100f;
         if (happinessSlider < 0f) happinessSlider = 0f;
+    }
+
+    private void HeartbeatSFX() 
+    {
+        // Heartbeat Volume
+        _hbVolumeProgress = Mathf.Clamp01(happinessSlider / 100f);
+        float targetVolume = Mathf.Lerp(0.0f, maxHbVolume, hbVolumeCurve.Evaluate(_hbVolumeProgress));
+        hbSource.volume = Mathf.SmoothDamp(hbSource.volume, targetVolume, ref _hbVolumeVelocity, hbVolumeSmoothness);
+
+        // Heartbeat Pitch
+        _hbPitchProgress = Mathf.Clamp01(happinessSlider / 100f);
+        float targetPitch = Mathf.Lerp(1.0f, maxHbPitch, hbPitchCurve.Evaluate(_hbPitchProgress));
+        hbSource.pitch = Mathf.SmoothDamp(hbSource.pitch, targetPitch, ref _hbPitchVelocity, hbPitchSmoothness);
+    }
+
+    private void LaughSFX() 
+    {
+        // Laugh Volume
+        _laughProgress = Mathf.Clamp01(happinessSlider / 100f);
+        float targetVolume = Mathf.Lerp(0.0f, maxLaughVolume, laughCurve.Evaluate(_laughProgress));
+        laughSource.volume = Mathf.SmoothDamp(laughSource.volume, targetVolume, ref _laughVelocity, laughSmoothness);
     }
 
     void UpdateVisuals() // Update visual indicator for happiness level
@@ -98,10 +173,17 @@ public class HappinessController : MonoBehaviour
         // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
     }
 
-    public void DecreaseHappiness(int addedHap)
+    public void DecreaseHappiness(int addedHap, bool decreaseToThreshhold = false)
     {
-
-        happinessSlider -= addedHap;
+        if (!decreaseToThreshhold)
+        {
+            happinessSlider -= addedHap;
+        }
+        else 
+        {
+            happinessSlider = currentThreshold;
+            happinessSlider -= addedHap;
+        }
         // healthBar.SetHealth(happinessSlider); // Visual for when Happiness Levels increase. It will increase Alpha levels of the set overlay (Ignore name, as its used for Health visuals aswell)
     }
 

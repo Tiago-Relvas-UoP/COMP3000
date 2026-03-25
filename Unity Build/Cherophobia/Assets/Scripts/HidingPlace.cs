@@ -5,7 +5,7 @@ using UnityEngine;
 public class HidingPlace : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] public GameObject hideText, showText;
+    [SerializeField] public GameObject hideText, showText, showText2;
     [SerializeField] public GameObject normalPlayer, hidingPlayer;
     [SerializeField] public GameManager gameManager;
     [SerializeField] public EnemyController enemyController;
@@ -78,14 +78,14 @@ public class HidingPlace : MonoBehaviour
 
                     hideText.SetActive(false);
                     showText.SetActive(true);
+                    showText2.SetActive(true);
 
                     _playerMovement.enabled = false;
                     normalCamera.SetActive(false);
-
                     hidingCamera.SetActive(true);
+                    Debug.Log("Player is hiding!");
 
-                    //hidingPlayer.SetActive(true);
-                    //normalPlayer.SetActive(false);
+
 
                     interactable = false;
                 } else 
@@ -99,18 +99,21 @@ public class HidingPlace : MonoBehaviour
 
         if(hidingHere == true) 
         { 
-            if (Input.GetKeyDown(KeyCode.Q)) 
+            if (Input.GetKeyDown(KeyCode.R)) 
             {
                 hidingHere = false;
                 _light.SetActive(false);
                 gameManager.hidingInLocker = false;
 
                 showText.SetActive(false);
+                showText2.SetActive(false);
 
                 _playerMovement.enabled = true;
 
                 normalCamera.SetActive(true);
                 hidingCamera.SetActive(false);
+
+                Debug.Log("Player is no longer hiding!");
 
                 //normalPlayer.SetActive(true);
                 //hidingPlayer.SetActive(false);

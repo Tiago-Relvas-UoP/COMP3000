@@ -40,6 +40,8 @@ public class EnemyController : MonoBehaviour
     private EnemyState m_storestate;
     public bool isChasing;
 
+    public float _dstToPlayer; // Used to calculate if Enemy should despawn if player reaches a "safe" zone;
+
     // Called before Start()
     private void Awake()
     {
@@ -57,6 +59,8 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         var dstToPlayer = Vector3.Distance(player.position, transform.position); // Stores how much distance there is between Enemy and player.
+        _dstToPlayer = dstToPlayer;
+
 
         if (m_storestate != _state) Debug.Log("New state: " + _state);
         m_storestate = _state;
@@ -116,7 +120,7 @@ public class EnemyController : MonoBehaviour
 
                 break;
         }
-        Patrol();
+        // Patrol();
         UpdateAnimations();
     }
 
@@ -260,5 +264,18 @@ public class EnemyController : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void OnEnable()
+    {
+        //Debug.Log("Enemy was enabled!");
+
+        _state = EnemyState.Patrolling;
+        _isWaiting = false;
+        _isAttacking = false;
+        _timeSinceLostPlayer = 0f;
+
+        _agent.isStopped = false;
+        _agent.SetDestination(patrolPoints[_currentPatrolIndex].position);
     }
 }

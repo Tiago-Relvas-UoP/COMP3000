@@ -12,6 +12,6 @@ public class MasterHintText : MonoBehaviour
     {
         m_textMeshPro = this.GetComponent<TextMeshPro>();
 
-        m_textMeshPro.text ="<color=#067265>Circle</color> > <color=#e9b00e>Square</color> > <color=#ed13a4>Circle</color> > <color=#067265>Triangle</color>";
+        m_textMeshPro.text = "<color=#FF9B0B>Master</color> Code:\n<color=#067265>Circle</color> > <color=#e9b00e>Square</color> > <color=#ed13a4>Circle</color> > <color=#067265>Triangle</color>";
     }
 }

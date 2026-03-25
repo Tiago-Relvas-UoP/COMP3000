@@ -18,6 +18,9 @@ TagManager:
   - TrapGate
   - TrapRoomText
   - FailedText
+  - MainEnemy
+  - AudioObjects
+  - EnemyAudioObject
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public static bool isPaused;
 
+    private GameObject _generalAudio;
+    private GameObject _enemyAudio;
+
     private GameManager gameManager;
 
     // Start is called before the first frame update
@@ -21,6 +24,8 @@ public class PauseMenu : MonoBehaviour
         winScreen.SetActive(false);
 
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        _generalAudio = GameObject.FindGameObjectWithTag("AudioObjects");
+        _enemyAudio = GameObject.FindGameObjectWithTag("EnemyAudioObject");
     }
 
     // Update is called once per frame
@@ -45,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         UnlockCursor();
 
         gameOverMenu.SetActive(true);
+        PauseAudio();
     }
 
     public void WinScreen() 
@@ -101,6 +107,19 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    // Trying this code
+    private void ResumeAudio() 
+    {
+        _generalAudio.SetActive(true);
+        _enemyAudio.SetActive(true);
+    }
+
+    private void PauseAudio() 
+    {
+        _generalAudio.SetActive(false);
+        _enemyAudio.SetActive(false);
     }
 
 }

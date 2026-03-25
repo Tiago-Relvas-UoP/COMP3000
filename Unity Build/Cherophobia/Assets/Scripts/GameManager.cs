@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         if (currentCrowbars > 0) hasCrowbar = true;
         else if (currentCrowbars <= 0) hasCrowbar = false;
 
+        
         switch (Time.timeScale) 
         {
             case 1f:

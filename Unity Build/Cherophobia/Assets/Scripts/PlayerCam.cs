@@ -14,11 +14,21 @@ public class PlayerCam : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    private GameObject _object;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // This is temporary because something else is resetting the cameras y rotation to -90.
+        _object = this.gameObject;
+        _object.transform.eulerAngles = new Vector3(
+            _object.transform.eulerAngles.x,
+            _object.transform.eulerAngles.y + 90,
+            _object.transform.eulerAngles.z
+        );
     }
 
     // Update is called once per frame
