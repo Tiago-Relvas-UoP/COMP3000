@@ -22,13 +22,11 @@ public class PlayerCam : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // This is temporary because something else is resetting the cameras y rotation to -90.
-        _object = this.gameObject;
-        _object.transform.eulerAngles = new Vector3(
-            _object.transform.eulerAngles.x,
-            _object.transform.eulerAngles.y + 90,
-            _object.transform.eulerAngles.z
-        );
+        // Fixes issue with camera on start
+        Vector3 rot = transform.rotation.eulerAngles;
+        yRotation = rot.y;
+        xRotation = rot.x;
+
     }
 
     // Update is called once per frame

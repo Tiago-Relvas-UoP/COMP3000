@@ -1,7 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor.dll:
-    - ReadmeEditor
     Assembly-CSharp.dll:
     - AudioManager
     - ContinueButton
@@ -32,7 +30,6 @@ ScriptsOnlyBuild:
     - PlayerCam
     - PlayerFootsteps
     - PlayerMovement
-    - Readme
     - TrapRoom
     - TriggerTrap
     - WoodenPlanks
@@ -79,21 +76,8 @@ ScriptsOnlyBuild:
     - UnityEditor.Rendering.Universal.UniversalProjectSettings
     Unity.RenderPipelines.Universal.Runtime.dll:
     - UnityEngine.Rendering.Universal.Bloom
-    - UnityEngine.Rendering.Universal.ChannelMixer
-    - UnityEngine.Rendering.Universal.ChromaticAberration
-    - UnityEngine.Rendering.Universal.ColorAdjustments
-    - UnityEngine.Rendering.Universal.ColorCurves
-    - UnityEngine.Rendering.Universal.ColorLookup
-    - UnityEngine.Rendering.Universal.DepthOfField
-    - UnityEngine.Rendering.Universal.FilmGrain
-    - UnityEngine.Rendering.Universal.LensDistortion
-    - UnityEngine.Rendering.Universal.LiftGammaGain
-    - UnityEngine.Rendering.Universal.MotionBlur
-    - UnityEngine.Rendering.Universal.PaniniProjection
     - UnityEngine.Rendering.Universal.PostProcessData
     - UnityEngine.Rendering.Universal.ScreenSpaceAmbientOcclusion
-    - UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights
-    - UnityEngine.Rendering.Universal.SplitToning
     - UnityEngine.Rendering.Universal.Tonemapping
     - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
     - UnityEngine.Rendering.Universal.UniversalAdditionalLightData
@@ -101,7 +85,6 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.Universal.UniversalRenderPipelineGlobalSettings
     - UnityEngine.Rendering.Universal.UniversalRendererData
     - UnityEngine.Rendering.Universal.Vignette
-    - UnityEngine.Rendering.Universal.WhiteBalance
     - UnityEngine.Rendering.Universal.XRSystemData
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -123,8 +106,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -497,6 +482,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8798}
     - Class: 114
       Script: {instanceID: 8974}
+    - Class: 114
+      Script: {instanceID: 9342}
     - Class: 114
       Script: {instanceID: 9648}
     - Class: 114
@@ -1263,7 +1250,7 @@ ScriptsOnlyBuild:
     className: GroupWeightManipulator
   - hash:
       serializedVersion: 2
-      Hash: 5ceb161f25041d7f89b31d78436e74c0
+      Hash: 29371a9658c4810493ab74274fc69c44
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
@@ -1965,7 +1952,7 @@ ScriptsOnlyBuild:
     className: CinemachineExternalCamera
   - hash:
       serializedVersion: 2
-      Hash: 59999bd9a757861f31e73ba65896c6d2
+      Hash: 71dc9b1ab634310f57362bb16ac3b3d9
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: TriggerTrap
@@ -2859,7 +2846,7 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 12de374c9e0a91a2367bc2dea1531baf
+      Hash: d9f608c1a34199344465f59f18a4509b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: HappinessTrap
@@ -2943,7 +2930,7 @@ ScriptsOnlyBuild:
     className: CinemachineGroupFraming
   - hash:
       serializedVersion: 2
-      Hash: 3ed63b8ae711c393e8798aadd5de9813
+      Hash: 9637e9e9f6e7b54d42ed5e9f52f73ae4
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: HappinessController
@@ -3071,4 +3058,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/drtie/Documents/CherophobiaBuild/Cherophobia.exe
+  playerPath: C:/Users/drtie/Documents/Cherophobia_v1.01/Cherophobia.exe

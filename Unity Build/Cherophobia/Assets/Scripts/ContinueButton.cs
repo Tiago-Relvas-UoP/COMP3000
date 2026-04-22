@@ -12,6 +12,11 @@ public class ContinueButton : MonoBehaviour
     private float _time = 0.0f;
     private bool _startTimer = false;
 
+    private void Start()
+    {
+        _time = 0.0f;
+    }
+
     private void Update()
     {
         if (_startTimer) _time += Time.deltaTime;
@@ -19,6 +24,7 @@ public class ContinueButton : MonoBehaviour
         if (_time >= duration)
         {
             _startTimer = false;
+            _time = 0.0f;
             continueButton.interactable = true;
         }
     }

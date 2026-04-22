@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     [Header("Has player Escaped?")]
     [SerializeField] public bool playerEscaped;
 
+    [Header("Inside Happiness Zone")]
+    [SerializeField] public bool insideTrap;
+
     // Start is called before the first frame update
     void Start()
     {

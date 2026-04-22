@@ -23,6 +23,14 @@ public class HappinessTrap : MonoBehaviour
     [SerializeField] private float shadowTextYOffset;
     [SerializeField] private float maxScale;
 
+    [Header("Clue Text Settings")]
+    [SerializeField] private string clueText;
+    [SerializeField] private float clueDuration;
+    private bool _wasClueShown;
+    private InteractionFailed _interactionFailed;
+
+    private GameManager _gameManager;
+
     private float _timeSincePlayerInRange = 0.0f;
     private float _timeSinceLastIncrease = 0.0f;
 
@@ -58,6 +66,10 @@ public class HappinessTrap : MonoBehaviour
 
         _firstText = true;
         _secondText = true;
+
+        _wasClueShown = false; 
+        _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
+        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -97,7 +109,14 @@ public class HappinessTrap : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            _gameManager.insideTrap = true;
             _timeSincePlayerInRange += Time.deltaTime;
+
+            if (_timeSincePlayerInRange >= Mathf.Floor(TimeBeforeActive / 1.5f) && !_wasClueShown) 
+            {
+                _interactionFailed.failedInteractionText(clueDuration, clueText);
+                _wasClueShown = true;
+            } 
 
             if (_timeSincePlayerInRange >= TimeBeforeActive)
             {
@@ -154,6 +173,7 @@ public class HappinessTrap : MonoBehaviour
             _startTextCooldown = false;
             _isFirstTextShown = false;
             _textInCooldow = true;
+            _gameManager.insideTrap = false;
 
             _firstText = true;
             _secondText = true;

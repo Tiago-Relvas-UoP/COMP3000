@@ -18,6 +18,7 @@ public class HealthController : MonoBehaviour
 
     private float _damageModifier;
     private InteractionFailed _interactionFailed;
+    private GameManager _gameManager;
 
     // Start is called before the first frame update
     private void Start()
@@ -25,6 +26,7 @@ public class HealthController : MonoBehaviour
         currentHealth = maxHealth;
         UpdateVisuals();
 
+        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
@@ -62,8 +64,8 @@ public class HealthController : MonoBehaviour
 
     // Function that once called, reduces HP but also reduces Happiness Slider.
     public void SelfInjure() 
-    { 
-        if (currentHealth > 25f && happinessController.happinessSlider > 24f)
+    {
+        if (currentHealth > 25f && happinessController.happinessSlider > 24f && !_gameManager.insideTrap)
         {
             ReceiveDamage(20, true);
             happinessController.DecreaseHappiness(25, true);
@@ -72,7 +74,8 @@ public class HealthController : MonoBehaviour
         } else
         {
             if (currentHealth <= 25f) _interactionFailed.failedInteractionText(3, "\"I'm already bleeding alot\"");
-            else if (happinessController.happinessSlider < 25f) _interactionFailed.failedInteractionText(3, "\"This is not necessary right now\"");
+            else if (_gameManager.insideTrap && happinessController.happinessSlider >= 25f) _interactionFailed.failedInteractionText(3, "\"I'm inside an happy zone, I need to leave first.\"");
+            else if (happinessController.happinessSlider < 25f) _interactionFailed.failedInteractionText(3, "\"This is not necessary right now.\"");
             // Debug.Log("Self-injure error: Player either is too low, or has no Happiness at all.");
             // Debug.Log("Current Health:" + currentHealth + " && Current Happiness: " + happinessController.happinessSlider);
         }

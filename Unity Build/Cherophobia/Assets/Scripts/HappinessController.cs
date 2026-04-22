@@ -33,10 +33,10 @@ public class HappinessController : MonoBehaviour
     private float timeSinceLastIncrease = 0.0f;
 
     [Header("Happiness SFX Settings")]
-    public AudioSource audioSource; // HappinessTrack audioSource
-    public float maxVolume = 0.5f;
-    public float smoothness = 0.6f;
-    private float _smoothedVolume;
+    [SerializeField] public AudioSource audioSource; // HappinessTrack audioSource
+    [SerializeField] private AnimationCurve musicCurve;
+    [SerializeField] public float maxVolume = 0.5f;
+    [SerializeField] public float smoothness = 0.6f;
     private float _velocity;
 
     [Header("Laugh SFX Settings")]
@@ -54,6 +54,13 @@ public class HappinessController : MonoBehaviour
     [SerializeField] private float maxHbPitch;
     [SerializeField] private float hbPitchSmoothness;
 
+    [Header("Clue Text Settings")]
+    [SerializeField] private string clueText;
+    [SerializeField] private float clueDuration;
+    private bool _wasClueShown;
+    private InteractionFailed _interactionFailed;
+
+    private float _musicProgress;
     private float _laughProgress; // laugh volume progress
     private float _hbVolumeProgress; 
     private float _hbPitchProgress; 
@@ -82,6 +89,9 @@ public class HappinessController : MonoBehaviour
 
         _deathTimer = 0.0f;
         _healthController = this.GetComponent<HealthController>();
+
+        _wasClueShown = false;
+        _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
     public void Update()
@@ -89,9 +99,16 @@ public class HappinessController : MonoBehaviour
         UpdateVisuals();
         StateHandler();
         HeartbeatSFX();
+        HappinessSFX();
         LaughSFX();
 
         timeSinceLastIncrease += Time.deltaTime;
+
+        if (timeSinceLastIncrease > Mathf.Floor(timeToWait / 2.5f) && happinessSlider > currentThreshold && !_wasClueShown)
+        { 
+            _interactionFailed.failedInteractionText(clueDuration, clueText);
+            _wasClueShown = true;
+        }
 
         if (timeSinceLastIncrease > timeToWait && happinessSlider > currentThreshold)
         {
@@ -101,10 +118,6 @@ public class HappinessController : MonoBehaviour
                 DecreaseHappiness(decayRate);
             }
         }
-
-        float targetVolume = (happinessSlider / 100) * maxVolume;
-        _smoothedVolume = Mathf.SmoothDamp(audioSource.volume, targetVolume, ref _velocity, smoothness);
-        audioSource.volume = _smoothedVolume;
 
         // audioSource.volume = (happinessSlider / 100) * maxVolume;
 
@@ -148,6 +161,13 @@ public class HappinessController : MonoBehaviour
         _hbPitchProgress = Mathf.Clamp01(happinessSlider / 100f);
         float targetPitch = Mathf.Lerp(1.0f, maxHbPitch, hbPitchCurve.Evaluate(_hbPitchProgress));
         hbSource.pitch = Mathf.SmoothDamp(hbSource.pitch, targetPitch, ref _hbPitchVelocity, hbPitchSmoothness);
+    }
+
+    private void HappinessSFX()
+    {
+        _musicProgress = Mathf.Clamp01(happinessSlider / 100f);
+        float targetVolume = Mathf.Lerp(0.0f, maxVolume, musicCurve.Evaluate(_musicProgress));
+        audioSource.volume = Mathf.SmoothDamp(audioSource.volume, targetVolume, ref _velocity, smoothness);
     }
 
     private void LaughSFX() 

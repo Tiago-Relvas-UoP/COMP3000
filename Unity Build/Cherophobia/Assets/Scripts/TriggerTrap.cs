@@ -37,6 +37,13 @@ public class TriggerTrap : MonoBehaviour
     [SerializeField] public float shadowPositionOffset = 20f;
     [SerializeField] public float shadowScaleOffset = 1f;
 
+    [Header("Clue Text Settings")]
+    [SerializeField] private string clueText;
+    [SerializeField] private float clueDuration;
+    private bool _wasClueShown;
+    private InteractionFailed _interactionFailed;
+
+
     private bool _triggered;
     private bool _jumpscareComplete;
     private float _xPosition;
@@ -59,6 +66,9 @@ public class TriggerTrap : MonoBehaviour
         _jumpscareComplete = false;
         _firstImageShowed = false;
         _trapComplete = false;
+
+        _wasClueShown = false;
+        _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
     private void Update()
@@ -73,6 +83,12 @@ public class TriggerTrap : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider collider)
     {
+        if (isTrapActive && !_wasClueShown) 
+        {
+            _interactionFailed.failedInteractionText(clueDuration, clueText);
+            _wasClueShown = true;
+        }
+
         if (isTrapActive)
         {
             AudioManager.instance.PlaySFX(triggerAudio, triggerVolume);
@@ -147,9 +163,14 @@ public class TriggerTrap : MonoBehaviour
 
                 _triggered = false;
                 _trapComplete = true;
+
+                if (!_wasClueShown)
+                {
+                    _interactionFailed.failedInteractionText(clueDuration, clueText);
+                    _wasClueShown = true;
+                }
             }
         }
-
     }
 
     private void ShowImage(int index, float xVariance = 0, float yVariance = 0, float scale = 1, GameObject gameObject = null) 
