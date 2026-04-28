@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     [Header("Inside Happiness Zone")]
     [SerializeField] public bool insideTrap;
 
+    public bool _gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
         placedFuses = 0;
         removedPlanks = 0;
         placedCode = false;
+
+        _gameOver = false;
 
         MasterDoor = GameObject.FindGameObjectWithTag("MasterDoor");
     }

@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public GameObject gameOverMenu;
     [SerializeField] public GameObject winScreen;
     [SerializeField] public GameObject pauseMenu;
+    [SerializeField] public GameObject settingsMenu;
     [SerializeField] public static bool isPaused;
 
     private GameObject _generalAudio;
@@ -31,11 +32,12 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameManager.IsKeypadBeingUsed) 
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameManager.IsKeypadBeingUsed && !gameManager._gameOver) 
         {
             if (isPaused) 
             {
                 ResumeGame();
+                settingsMenu.SetActive(false);
             }
             else 
             {

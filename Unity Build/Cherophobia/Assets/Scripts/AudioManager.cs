@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    public AudioMixer sfxMix;
 
     // Start is called before the first frame update
     private void Awake()
@@ -21,6 +23,7 @@ public class AudioManager : MonoBehaviour
     IEnumerator PlaySFXCoroutine(AudioClip audioClip, float volume = 1f, float spatialBlend = 1f, float minDist = 1f, float maxDist = 500f, bool muteAfterTime = false, float timeToMute = 9999f)
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup = sfxMix.FindMatchingGroups("SFX")[0];
         audioSource.dopplerLevel = 0f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
 

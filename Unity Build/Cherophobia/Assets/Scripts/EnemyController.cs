@@ -11,7 +11,6 @@ public enum EnemyState
     Patrolling,
     Following,
     Attacking,
-    Investigating, // Not being used atm. It will be used when the AI hears a sound in the proximity to go investigate it.
 }
 
 public class EnemyController : MonoBehaviour
@@ -234,8 +233,6 @@ public class EnemyController : MonoBehaviour
     
     private bool CanSeePlayer()
     {
-        //Debug.Log("Facing player: " + IsFacingPlayer());
-        //Debug.Log("ClearPath: " + HasClearPathToPlayer());
         return IsFacingPlayer() && HasClearPathToPlayer(); // Returns a true value is both methods also return the same
     }
 
