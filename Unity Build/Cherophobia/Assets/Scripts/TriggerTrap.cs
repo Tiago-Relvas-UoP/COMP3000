@@ -94,6 +94,8 @@ public class TriggerTrap : MonoBehaviour
             AudioManager.instance.PlaySFX(triggerAudio, triggerVolume);
             AudioManager.instance.PlaySFX(jumpscareAudio, jumpscareVolume);
 
+            PlayerPrefs.SetFloat("lastDeathCause", 2f);
+
             happinessController.IncreaseHappiness(25);
             isTrapActive = false;
             _triggered = true;

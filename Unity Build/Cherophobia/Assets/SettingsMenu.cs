@@ -15,10 +15,9 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetupPrefs();
-        masterMix.SetFloat("master", volumeCalc(PlayerPrefs.GetFloat("masterVolume")));
-        masterMix.SetFloat("sfx", volumeCalc(PlayerPrefs.GetFloat("sfxVolume")));
-        masterMix.SetFloat("music", volumeCalc(PlayerPrefs.GetFloat("musicVolume")));
+        masterSlider.value = PlayerPrefs.GetFloat("masterVolume");
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
     }
 
     public void Save() 
@@ -40,27 +39,5 @@ public class SettingsMenu : MonoBehaviour
     public float volumeCalc(float volume) 
     { 
         return Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
-    }
-
-    // Setup prefs on first boot
-    private void SetupPrefs()
-    {
-        // Master Volume
-        if (!PlayerPrefs.HasKey("masterVolume"))
-        {
-            PlayerPrefs.SetFloat("masterVolume", 1f);
-        }
-
-        // SFX Volume
-        if (!PlayerPrefs.HasKey("sfxVolume"))
-        {
-            PlayerPrefs.SetFloat("sfxVolume", 1f);
-        }
-
-        // Music Volume
-        if (!PlayerPrefs.HasKey("musicVolume"))
-        {
-            PlayerPrefs.SetFloat("musicVolume", 1f);
-        }
     }
 }

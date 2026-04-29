@@ -62,12 +62,9 @@ public class KeyItem : MonoBehaviour
         switch (itemType)
         {
             case 1:
-                if (gameManager.hasCrowbar == false)
-                {
-                    gameManager.currentCrowbars++;
-                }
-
+                gameManager.currentCrowbars++;
                 break;
+
             case 2:
 
                 gameManager.currentFuses++;

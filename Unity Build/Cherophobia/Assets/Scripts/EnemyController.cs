@@ -150,6 +150,7 @@ public class EnemyController : MonoBehaviour
 
     private void DamagePlayer() 
     {
+        PlayerPrefs.SetFloat("lastDeathCause", 0f);
         healthController.ReceiveDamage(20);
     }
 

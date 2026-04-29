@@ -126,6 +126,7 @@ public class HappinessTrap : MonoBehaviour
                 {
                     _timeSinceLastIncrease = 0.0f;
                     happinessController.IncreaseHappiness(HappinessReceived);
+                    PlayerPrefs.SetFloat("lastDeathCause", 1f);
                 }
 
             }
