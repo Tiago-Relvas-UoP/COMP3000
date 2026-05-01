@@ -130,6 +130,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\TriggerTrap.cs" />
+    <Compile Include="Assets\FpsCounter.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\CodePad.cs" />
     <Compile Include="Assets\Scripts\Interactions\MasterDoor.cs" />

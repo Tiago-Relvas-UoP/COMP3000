@@ -11,8 +11,12 @@ public class PlayerCam : MonoBehaviour
     public Transform orientation;
 
     // rotation
-    float xRotation;
-    float yRotation;
+    private float xRotation;
+    private float yRotation;
+
+    // Mouse Axis
+    private float mouseX;
+    private float mouseY;
 
     private GameObject _object;
 
@@ -33,8 +37,8 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
         // Get mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
         yRotation += mouseX;
         xRotation -= mouseY;

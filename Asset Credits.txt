@@ -1,0 +1,82 @@
+# MUSIC/SFX
+
+1. Freesounds.org
+
+- Ambience: "spoopyAmb" by ichitaraaa [https://freesound.org/people/ichitaraaa/sounds/725337/]
+- Game Over Theme: "Until Midnight [Looping Tune]" by ExpiredSoda [https://freesound.org/people/ExpiredSoda/sounds/838167/]
+- Heart Beat SFX: "Heart Beating" by michorvath [https://freesound.org/people/michorvath/sounds/273150/]
+- Whisper SFX: "Dallas Rd Whisper 1 Edit.wav" by LozKaye [https://freesound.org/people/LozKaye/sounds/640788/]
+- Out-of-breath SFX: "Heavy breathing recorded with Rode Shotgun Microphone post-processed in Reaper.wav" by HugoBozz[https://freesound.org/people/HugoBozz/sounds/492781/]
+- Button SFX: "VS Button Click 05.mp3" by Vilkas_Sound [https://freesound.org/people/Vilkas_Sound/sounds/707042/]
+- Main Menu Theme: "Dark Cold Main Menu Loop - Mild Mountain Sickness - Marb7e" by marb7e [https://freesound.org/people/marb7e/sounds/674392/]
+- Wooden Plank SFX: "Breaking wooden plank" by jorickhoofd [https://freesound.org/people/jorickhoofd/sounds/178593/]
+- Fuse SFX: "put_item.wav" by j1987 [https://freesound.org/people/j1987/sounds/335751/]
+- Self-injure SFX: "Bloody Stab 1" by MinecraftGamerLR [https://freesound.org/people/MinecraftGamerLR/sounds/728696/]
+- Collect item SFX: "grab-item" by 1bob [https://freesound.org/people/1bob/sounds/651515/]
+- Footstep SFX: "Footsteps_Stiletto_Stone_Walk03.wav" by marb7e [https://freesound.org/people/marb7e/sounds/620341/]
+- Gate Slam SFX: "door_slam.wav" by primeval_polypod [https://freesound.org/people/primeval_polypod/sounds/160612/]
+- Flashlight SFX: "Small_Flashlight_Click_on_01.wav" by Rudmer_Rotteveel [https://freesound.org/people/Rudmer_Rotteveel/sounds/457458/]
+- Mimic Attack SFX: "Slash2.ogg" by wesleyextreme_gamer [https://freesound.org/people/wesleyextreme_gamer/sounds/574820/]
+- Mimic Breathing SFX: "Large monster breathing, growls and screeches" by nornalbion [https://freesound.org/people/nornalbion/sounds/195733/]
+- Mimic Footsteps SFX: "Footsteps_B.wav" by CharlieX [https://freesound.org/people/CharlieX/sounds/91775/]
+
+2. Youtube
+
+- Keypad Button SFX: "OTIS Gen2 540A Lift - Button Press Sound" by Tim Pugh TheLogoRemaker Fan Est. (DO NOT HACK) [https://www.youtube.com/watch?v=UWvTapfzq_c&list=PLhf0YIKdC-1Rv-3ze49ua7x7E0Eik5oUq&index=2]
+- Happiness Theme: "Horror Ambience #22 (Background Sound Effect)" by SoundEffectsFactory [https://www.youtube.com/watch?v=oqWG6MHL99M&list=PLhf0YIKdC-1Rv-3ze49ua7x7E0Eik5oUq]
+
+
+# MATERIALS/TEXTURES
+
+1. Third-Party Providers (3D Asset Textures)
+
+- Majority of Textures: https://ambientcg.com 
+- Cables Texture: https://everytexture.com/everytexture-com-stock-plastic-texture-00020/ (Cables Texture)
+- Rusty Grunge Metal Texture: https://www.magnific.com/free-photo/grunge-texture-metal-surface_1020653.htm#fromView=keyword&page=1&position=21&uuid=cc21a7b0-6717-44ff-be10-ef31726957ed&query=Metal+texture 
+- Scratched Grunge Metal Texture: https://www.magnific.com/free-photo/grunge-scratched-brushed-metal-background_21551115.htm#fromView=keyword&page=1&position=1&uuid=215b6bea-75bc-4802-aefb-19cd96823d7b&query=Steel+texture
+- Cross yellow sign: https://commons.wikimedia.org/wiki/File:Dark_yellow_x.svg
+- High Voltage Warning: https://commons.wikimedia.org/wiki/File:High_voltage_warning.svg
+
+2. Instructions Sheet
+- Bloody Knife Icon: "Knife Blood SVG Vector" by Satawat Anukul [https://www.svgrepo.com/svg/425753/knife-blood]
+- Fuse Icon: "Fuse_4893192" by Freepik [https://www.flaticon.com/free-icon/fuse_4893192]
+- Crowbar Icon: "Crowbar SVG Vector" by game-icons.net [https://www.svgrepo.com/svg/322129/crowbar]
+- Keypad icon: "Keypad SVG Vector" by Esri [https://www.svgrepo.com/svg/451005/keypad]
+- Keyboard Icons: "Keyboard Mouse Input Icons" by defacegames.net [https://defacegames.com/product/keyboard-mouse-icon-pack-free/]
+
+
+
+
+# 3D PROPS 
+
+1. Unity Asset Store
+
+- Crowbar Asset: "Crowbar" by RRFreelance [https://assetstore.unity.com/packages/3d/props/tools/crowbar-20500]
+- Potted Plants: "Stylized Potted Plants" by SandoraKa [https://assetstore.unity.com/packages/3d/vegetation/plants/stylized-potted-plants-290047]
+- Classroom Props & Vending Machines: "Classroom" by studiolab [https://assetstore.unity.com/packages/3d/environments/urban/classroom-75007]
+- Toilet and Sink: "Low-Poly Sink and Toilet" by Deployed [https://assetstore.unity.com/packages/3d/props/interior/low-poly-sink-and-toilet-61018]
+- Pillars: "Simple Modular Pillars" by Knightferret Studios [https://assetstore.unity.com/packages/3d/environments/simple-modular-pillars-255707]
+- Desk Lamp: "Old 'USSR' Lamp" by ESsplashkid [https://assetstore.unity.com/packages/3d/props/electronics/old-ussr-lamp-110400]
+- Waste bins: "Waste bin" by Lowpoly_Master [https://assetstore.unity.com/packages/3d/props/waste-bin-73303]
+- Happiness Statue: "Bust of Sappho" by AK STUDIO ART [https://assetstore.unity.com/packages/3d/props/bust-of-sappho-260986]
+- Paintings: "Pictures" by Maksim Bugrimov [https://assetstore.unity.com/packages/3d/props/interior/pictures-88112]
+- Balloons props: "Ballons" by Loafbrr [https://assetstore.unity.com/packages/3d/props/balloons-307245]
+- Books: "Mobile Books" by VIS Games [https://assetstore.unity.com/packages/3d/props/interior/mobile-books-3356]
+- Office Table: "Desk Table" by Rodolfo Rubens [https://assetstore.unity.com/packages/3d/props/furniture/desk-table-96582]
+- Laptops: "HQ Laptop Computer" by Next Level 3D [https://assetstore.unity.com/packages/3d/props/electronics/hq-laptop-computer-42030]
+
+2. Sketchfab
+- Birthday Cake: "Fo3 Birthday Cake" by Al [https://sketchfab.com/3d-models/fo3-birthday-cake-5e10d66592334af6a9470582240ab012]
+
+3. Mixamo
+
+- The Mimic (Model and Animations): "Parasite L Starkie" by Adobe Mixamo Service
+
+
+
+
+
+
+
+
+

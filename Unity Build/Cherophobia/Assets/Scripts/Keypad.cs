@@ -29,7 +29,7 @@ public class Keypad : MonoBehaviour
     [SerializeField] public bool isMasterKeypad = true;
 
     [Header("Button References")]
-    public Button but1, but2, but3, but4, but5, but6, but7, but8, but9, but0;
+    public Button but1, but2, but3, but4, but5, but6, but7, but8, but9;
 
     [Header("Audio Clips")]
     [SerializeField] public AudioClip buttonPressSFX;
@@ -113,7 +113,6 @@ public class Keypad : MonoBehaviour
 
                 but8.interactable = true;
                 but9.interactable = true;
-                but0.interactable = true;
 
                 keypad.SetActive(false);
 
@@ -141,7 +140,6 @@ public class Keypad : MonoBehaviour
                     but7.interactable = false;
                     but8.interactable = false;
                     but9.interactable = false;
-                    but0.interactable = false;
                     codeDone = true;
                     gameManager.IsKeypadBeingUsed = false;
 
@@ -178,7 +176,6 @@ public class Keypad : MonoBehaviour
                     but7.interactable = false;
                     but8.interactable = false;
                     but9.interactable = false;
-                    but0.interactable = false;
                     gameManager.IsKeypadBeingUsed = false;
 
                     if (token == 0)
@@ -210,7 +207,6 @@ public class Keypad : MonoBehaviour
         token = 0;
         but8.interactable = true;
         but9.interactable = true;
-        but0.interactable = true;
         keypad.SetActive(false);
         playerMov.enabled = true;
         playerCam.enabled = true;
@@ -278,12 +274,6 @@ public class Keypad : MonoBehaviour
     public void pressedNine()
     {
         codeString = codeString + "9";
-        stringCharacters = stringCharacters + 1;
-        AudioManager.instance.PlaySFX(buttonPressSFX, 0.2f);
-    }
-    public void pressedZero()
-    {
-        codeString = codeString + "0";
         stringCharacters = stringCharacters + 1;
         AudioManager.instance.PlaySFX(buttonPressSFX, 0.2f);
     }

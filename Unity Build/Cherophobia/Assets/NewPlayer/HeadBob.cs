@@ -11,6 +11,8 @@ public class HeadBob : MonoBehaviour
     [SerializeField, Range(10f, 100f)] public float smooth = 10.0f;
 
     Vector3 StartPos;
+    Vector3 pos;
+    private float inputMagnitude;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class HeadBob : MonoBehaviour
 
     private void CheckForHeadBobTrigger() 
     {
-        float inputMagnitude = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).magnitude;
+        inputMagnitude = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).magnitude;
 
         if (inputMagnitude > 0)
         {
@@ -37,7 +39,7 @@ public class HeadBob : MonoBehaviour
 
     private Vector3 StartHeadBob() 
     {
-        Vector3 pos = Vector3.zero;
+        pos = Vector3.zero;
         pos.y += Mathf.Lerp(pos.y, Mathf.Sin(Time.time * frequency) * amount * 1.4f, smooth * Time.deltaTime);
         pos.x += Mathf.Lerp(pos.x, Mathf.Cos(Time.time * frequency / 2f) * amount * 1.6f, smooth * Time.deltaTime);
 

@@ -38,7 +38,6 @@ public class GameOver : MonoBehaviour
 
     private float _textCountdown;
     private float _audioVolume;
-        
 
     // Start is called before the first frame update
     private void Start()
@@ -75,10 +74,7 @@ public class GameOver : MonoBehaviour
         if (_countdown > waitTime)
         {
             _transitionProgress = Mathf.Clamp01((_countdown - waitTime) / fadeInTime);
-
-
             _alphaValue = transitionCurve.Evaluate(_transitionProgress);
-
             entitySprite.color = new Color(entitySprite.color.r, entitySprite.color.g, entitySprite.color.b, _alphaValue);
         }
 
