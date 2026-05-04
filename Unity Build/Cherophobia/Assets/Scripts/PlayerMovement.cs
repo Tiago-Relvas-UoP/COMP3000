@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] public float walkSpeed;
     [SerializeField] public float sprintSpeed;
-    [SerializeField] public float crouchSpeed;
     [SerializeField] public float groundDrag; // Drag
 
     [Header("Stamina Curve")]

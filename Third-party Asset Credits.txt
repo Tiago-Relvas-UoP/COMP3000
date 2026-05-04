@@ -28,7 +28,7 @@
 
 # MATERIALS/TEXTURES
 
-1. Third-Party Providers (3D Asset Textures)
+1. Third-Party Providers
 
 - Majority of Textures: https://ambientcg.com 
 - Cables Texture: https://everytexture.com/everytexture-com-stock-plastic-texture-00020/ (Cables Texture)
@@ -44,7 +44,8 @@
 - Keypad icon: "Keypad SVG Vector" by Esri [https://www.svgrepo.com/svg/451005/keypad]
 - Keyboard Icons: "Keyboard Mouse Input Icons" by defacegames.net [https://defacegames.com/product/keyboard-mouse-icon-pack-free/]
 
-
+3. Happiness/Health Vissuals
+"Blood Screen Effects" by ScratchBattles [https://squaremeapixel.itch.io/blood-screen-effects]
 
 
 # 3D PROPS 

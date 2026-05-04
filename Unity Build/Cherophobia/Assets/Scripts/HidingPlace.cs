@@ -68,7 +68,7 @@ public class HidingPlace : MonoBehaviour
     {
         if(interactable == true) 
         { 
-            if (Input.GetKeyDown(KeyCode.E)) 
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) 
             {
                 if (happinessController.happinessSlider < 75f) 
                 {

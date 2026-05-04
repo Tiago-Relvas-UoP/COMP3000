@@ -69,7 +69,7 @@ public class Keypad : MonoBehaviour
     {
         if (interactable == true)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
             {
                 // Set keypad active & disable interactable bool
                 keypadActive = true;

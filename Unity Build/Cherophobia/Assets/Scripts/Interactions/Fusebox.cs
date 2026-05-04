@@ -61,7 +61,7 @@ public class Fusebox : MonoBehaviour
     {
         if (interactable && !fuseMesh.enabled)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
             {
                 if (gameManager.hasFuse)
                 {

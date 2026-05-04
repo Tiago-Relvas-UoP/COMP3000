@@ -49,7 +49,7 @@ public class KeyItem : MonoBehaviour
     {
         if (interactable && item.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
             {
                 AudioManager.instance.PlaySFX(grabItemSFX);
                 ObtainItem(itemType);

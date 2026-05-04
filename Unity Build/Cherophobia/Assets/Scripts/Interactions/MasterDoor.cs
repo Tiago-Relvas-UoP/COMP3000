@@ -56,7 +56,7 @@ public class MasterDoor : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(interactable && Input.GetKeyDown(KeyCode.E)) 
+        if(interactable && (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))) 
         { 
             if (gameManager.IsMasterUnlocked) 
             {

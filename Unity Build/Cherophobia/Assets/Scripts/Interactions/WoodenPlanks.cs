@@ -57,7 +57,7 @@ public class WoodenPlanks : MonoBehaviour
     {
         if (interactable && woodenPlank.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
             {
                 if (gameManager.hasCrowbar) 
                 {
