@@ -13,7 +13,12 @@ Cherophobia is a survival-horror in which you must avoid happiness sources at al
 - And more!
 
 ## Download Instructions
+
+### GAME EXECUTABLE
 A downloadable .zip of the game can be found in [Itch.io](https://silly-tiago.itch.io/cherophobia), or in the [Releases](https://github.com/Tiago-Relvas-UoP/COMP3000/releases/tag/survival_horror_game) Section of this repository.
+
+### SOURCE CODE
+Refrain from download the source code found in the Releases section. Instead, download it by clicking the green "Code" button and selecting "Download ZIP".
 
 ## Technologies used
 - Game Engine: Unity version 2022.3.50f1
