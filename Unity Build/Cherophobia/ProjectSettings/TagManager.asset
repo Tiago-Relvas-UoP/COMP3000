@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - MainFuse
+  - MasterDoor
+  - CollectibleFuse
+  - CollectibleCrowbar
+  - CollectibleCode
+  - Planks
+  - MainCode
+  - GameManager
+  - InteractionUI
+  - BlockedDoor
+  - TrapRoomLight
+  - TrapGate
+  - TrapRoomText
+  - FailedText
+  - MainEnemy
+  - AudioObjects
+  - EnemyAudioObject
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - Obstacle
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
