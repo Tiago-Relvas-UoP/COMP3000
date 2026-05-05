@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CollectBar : MonoBehaviour, IInteractable
 {
+    // OLD CROWBAR SCRIPT. THIS IS NOT USED ANYMORE IN THE PROGRAM
+
     private GameManager gameManager;
     private GameObject itemComponent;
-
 
     public void Start()
     {

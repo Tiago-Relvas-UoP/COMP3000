@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MasterHintText : MonoBehaviour
 {
+    // Updates chalkboard text in the Laptop Room with Code hint.
+
     private TextMeshPro m_textMeshPro;
 
     // Start is called before the first frame update

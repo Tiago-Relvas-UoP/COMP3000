@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
+// Game Manager is responsible for keeping track of multiple game variables, including volume, death cause, and Master Door Progress. Also handles transition to Game Over screen.
+
 public class GameManager : MonoBehaviour
 {
     [Header("References")]
@@ -77,13 +79,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Tracks if player has certain item types.
         if (currentFuses > 0) hasFuse = true;
         else if (currentFuses <= 0) hasFuse = false;
 
         if (currentCrowbars > 0) hasCrowbar = true;
         else if (currentCrowbars <= 0) hasCrowbar = false;
 
-        
+        // Disables main Audio Listener based on Time scaled (When game is paused)
         switch (Time.timeScale) 
         {
             case 1f:
@@ -95,23 +98,26 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-
+        // Unlocks Master Door interactability once all Components have been appropriately placed.
         if (placedFuses == 3 && removedPlanks == 3 && placedCode)
         {
             IsMasterUnlocked = true; // Makes Master Door available for interaction
         }
 
+        // Shows Win Screen once player has escaped
         if (playerEscaped)
         {
             pauseMenu.WinScreen();
         }
 
+        // Handles transition to Game Over screen once player has died. Immediatly sets screen to black, and starts countdown before switching scenes.
         if (healthController.currentHealth <= 0f)
         {
             _firstCountdown += Time.deltaTime;
             Debug.Log("Cause of death:" + PlayerPrefs.GetFloat("lastDeathCause"));
             blackBackground.SetActive(true);
 
+            // Disables all configured background musics (Excludes SFX)
             for (int i = 0; i < backgroundMusic.Length; i++)
             {
                 backgroundMusic[i].SetActive(false);
@@ -120,16 +126,17 @@ public class GameManager : MonoBehaviour
             Debug.Log("Countdown " + _firstCountdown);
             if (_firstCountdown >= 1f)
             {
-                AudioListener.pause = true;
+                AudioListener.pause = true; // Pause AudioListener after a second.
 
                 if (_firstCountdown >= 3f)
                 {
-                    SceneManager.LoadScene("GameOver");
+                    SceneManager.LoadScene("GameOver"); // Load Game Over Scene once enough time has passed
                 }
             }
         }
     }
 
+    // Reset appropriate Flags on Game Start.
     private void SetupFlags() 
     {
         // Reset time scale
@@ -152,6 +159,7 @@ public class GameManager : MonoBehaviour
         _secondCountdown = 0f;
     }
 
+    // On game start, sets each volume mixer value to appropriate value, based on their respective PlayerPrefs value.
     private void SetVolume() 
     {
         masterMix.SetFloat("master", volumeCalc(PlayerPrefs.GetFloat("masterVolume")));

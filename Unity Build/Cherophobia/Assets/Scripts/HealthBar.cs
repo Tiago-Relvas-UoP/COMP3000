@@ -43,17 +43,20 @@ public class HealthBar : MonoBehaviour
         UpdateScale();
     }
 
+    // Sets value used to change Scale/Opacity of the UI element.
     public void SetHealth(float health)
     {
         value = health;
     }
 
+    // Updates the opacity of the UI element based on current Health/Happiness value.
     private void UpdateOpacity() 
     {
         alpha.a = Mathf.Abs((value / 100) - InvertAlpha);
         overlay.color = alpha;
     }
 
+    // Updates the scale of the UI element based on current Health/Happiness value.
     private void UpdateScale()
     {
         _scaleMath = defaultScale - Mathf.Lerp(0f, Mathf.Abs((value / 100) - InvertAlpha), value) - (defaultScale - 2.0f);
@@ -61,14 +64,6 @@ public class HealthBar : MonoBehaviour
 
         scaleVector = new Vector3(_smoothedScale, _smoothedScale, _smoothedScale);
         overlay.transform.localScale = scaleVector;
-
-        /*
-        _scaleMath = defaultScale - Mathf.Lerp(0f, Mathf.Abs((value / 100) - InvertAlpha), value) - (defaultScale - 2.0f);
-        scaleVector = new Vector3(_scaleMath, _scaleMath, _scaleMath);
-        overlay.transform.localScale = scaleVector;
-        */
-
-
 
         // Debug
         time += Time.deltaTime;

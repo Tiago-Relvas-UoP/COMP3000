@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This script handles the "Continue" button inside the Main Menu, in the instructions screen. It toggles the interactability of it after a set amount of time
 public class ContinueButton : MonoBehaviour
 {
     [Header("References")]
@@ -19,8 +20,10 @@ public class ContinueButton : MonoBehaviour
 
     private void Update()
     {
+        // Start countdown when flag is true
         if (_startTimer) _time += Time.deltaTime;
 
+        // If enough time has passed, reset timer, disable flag and enable button interactability.
         if (_time >= duration)
         {
             _startTimer = false;
@@ -29,6 +32,7 @@ public class ContinueButton : MonoBehaviour
         }
     }
 
+    // Called by the "Play" button in the Main Menu to enable the flag and start the timer.
     public void StartTimer() 
     {
         _startTimer = true;

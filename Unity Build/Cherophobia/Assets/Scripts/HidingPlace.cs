@@ -44,6 +44,7 @@ public class HidingPlace : MonoBehaviour
         _interactionFailed = GameObject.FindGameObjectWithTag("FailedText").GetComponent<InteractionFailed>();
     }
 
+    // Show text if player interactable collider is touching the interactable, and enable interaction text
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("MainCamera"))
@@ -53,6 +54,7 @@ public class HidingPlace : MonoBehaviour
         }
     }
 
+    // ~Hide text if player interactable collider is not touching the interactable, and disable interaction text
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("MainCamera"))
@@ -66,11 +68,12 @@ public class HidingPlace : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // If interactable and appropriate button is pressed, hide.
         if(interactable == true) 
         { 
             if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) 
             {
-                if (happinessController.happinessSlider < 75f) 
+                if (happinessController.happinessSlider < 75f) // If happiness is below certain threshold, allow interaction.
                 {
                     hidingHere = true;
                     _light.SetActive(true);
@@ -88,17 +91,16 @@ public class HidingPlace : MonoBehaviour
 
 
                     interactable = false;
-                } else 
+                } else // Else, call upon method in failedInteraction.cs to show failed interaction text.
                 {
                     _interactionFailed.failedInteractionText(textDuration, failedText);
                 }
-
-                // enemyController._state = EnemyState.Patrolling;
             }
         }
 
-        if(hidingHere == true) 
+        if(hidingHere == true) // If hiding
         { 
+            // If appropriat key is pressed, stop hiding.
             if (Input.GetKeyDown(KeyCode.R)) 
             {
                 hidingHere = false;

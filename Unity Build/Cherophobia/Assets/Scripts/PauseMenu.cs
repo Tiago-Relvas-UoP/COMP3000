@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Handles the behaviour of multiple buttons in the pause menu, aswell as Game Over/Win screens.
 public class PauseMenu : MonoBehaviour
 {
     [Header("References")]
@@ -32,6 +33,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Pause/Unpause game when escape is pressed if conditions are met (E.g. not interacting with Keypad).
         if (Input.GetKeyDown(KeyCode.Escape) && !gameManager.IsKeypadBeingUsed && !gameManager._gameOver) 
         {
             if (isPaused) 
@@ -46,6 +48,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Handles behaviour of game over screen.
     public void GameOverScreen() 
     { 
         Time.timeScale = 0f;
@@ -63,35 +66,41 @@ public class PauseMenu : MonoBehaviour
         winScreen.SetActive(true);
     }
 
+    // Handles behaviour when pausing game.
     public void PauseGame() 
     {
         UnlockCursor();
         GameState(true, 0f);
     }
 
+    // Handles behaviour when resuming game.
     public void ResumeGame()
     {
         LockCursor();
         GameState(false, 1f);
     }
 
+    // Restarts the gameplay level scene when called
     public void RestartGame() 
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("SampleScene");
     }
 
+    // Goes to the main menu scene when called
     public void GoToMainMenu() 
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
+    // Quits application/game
     public void QuitGame()
     {
         Application.Quit();
     }
 
+    // Changes game state based on pause status, and sets timescale accordingly
     private void GameState(bool IsGamePaused, float timeScale) 
     {
         pauseMenu.SetActive(IsGamePaused);
@@ -99,12 +108,14 @@ public class PauseMenu : MonoBehaviour
         isPaused = IsGamePaused;
     }
 
+    // Locks cursor when called
     private void LockCursor() 
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
+    // Unlocks cursor when called
     private void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -118,6 +129,7 @@ public class PauseMenu : MonoBehaviour
         _enemyAudio.SetActive(true);
     }
 
+    // Pauses audio objects by disabling their respective game objects when called.
     private void PauseAudio() 
     {
         _generalAudio.SetActive(false);

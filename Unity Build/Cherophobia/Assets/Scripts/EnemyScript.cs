@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
+    // OLD ATTEMPT AT ENEMY AI FOR THE MIMIC. NOT USED IN THE FINAL PRODUCT.
+    // SCRIPT KEPT INSIDE PROGRAM FOR STORING/HISTORY PURPOSES.
+
     public NavMeshAgent navMeshAgent; // References Navigation Mesh Agent for Enemy
 
     // Enemy variables

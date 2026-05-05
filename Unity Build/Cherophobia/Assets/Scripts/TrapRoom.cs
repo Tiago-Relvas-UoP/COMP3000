@@ -4,6 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Handles behaviour for the Trap Room, which contains the cake
+
 public class TrapRoom : MonoBehaviour
 {
     [Header("References")]
@@ -39,6 +41,8 @@ public class TrapRoom : MonoBehaviour
         _light = GameObject.FindWithTag("TrapRoomLight").GetComponent<Light>();
     }
 
+    // Entering the trigger zone marks the trap as active, changing the fake item mesh with an Happiness Object (Cake)
+    // and traps the player inside by turning on the game game object. The light inside the room also changes, and text is shown around the room.
     private void OnTriggerEnter(Collider trapCollider)
     {
         if (trapActive) 
@@ -62,16 +66,19 @@ public class TrapRoom : MonoBehaviour
 
     private void Update()
     {
+        // if player is trapped, start countdown.
         if (isPlayerTrapped)
         {
             _timeSincePlayerTrapped += Time.deltaTime;
         }
 
+        // If enough time has passed, disable gate that blocks the room so player can flee
         if (_timeSincePlayerTrapped >= trapDuration)
         {
             DoorBlock.SetActive(false);
         }
 
+        // if enough time has passed since player was trapped, reset the light range on the room.
         if (_timeSincePlayerTrapped >= rangeDuration)
         {
 

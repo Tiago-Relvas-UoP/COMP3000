@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
+// Handles behaviour of buttons/sliders in settings menu.
 public class SettingsMenu : MonoBehaviour
 {
     [Header("Audio Settings")]
@@ -13,6 +14,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider musicSlider;
 
     // Start is called before the first frame update
+    // Set AudioMixer sliders based on the appropriate PlayerPrefs values
     void Start()
     {
         masterSlider.value = PlayerPrefs.GetFloat("masterVolume");
@@ -20,6 +22,7 @@ public class SettingsMenu : MonoBehaviour
         musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
     }
 
+    // Saves volume settings locally, and in the PlayerPrefs.
     public void Save() 
     {
         // Save Prefs

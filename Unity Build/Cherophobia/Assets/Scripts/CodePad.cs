@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CodePad : MonoBehaviour, IInteractable
 {
+    // OLD CODEPAY/KEYPAD SCRIPT. THIS IS NOT USED ANYMORE IN THE PROGRAM
+    
     private GameManager gameManager;
     private GameObject itemComponent;
 
