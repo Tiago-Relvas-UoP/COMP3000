@@ -12,6 +12,9 @@ Cherophobia is a survival-horror in which you must avoid happiness sources at al
 - A multitude of puzzles and challenges to complete in order to obtain items to slowly unlock your escape via the Master Door
 - And more!
 
+## Download Instructions
+A downloadable .zip of the game can be found in [Itch.io](https://silly-tiago.itch.io/cherophobia), or in the [Releases](https://github.com/Tiago-Relvas-UoP/COMP3000/releases/tag/survival_horror_game) Section of this repository.
+
 ## Technologies used
 - Game Engine: Unity version 2022.3.50f1
 - Programming Language: C#
@@ -20,11 +23,11 @@ Cherophobia is a survival-horror in which you must avoid happiness sources at al
 - Image Editting: GIMP 3.0.8-2
 
 ## Repository Navigation
-`! 3D Assets`: Contains all relevant files used when creating 3D Assets, includes Blender Files, Export Files (.FBX), aswell as folders including textures and reference material.
-`! Development Logs and Videos`: Contains two text files with links to video-related content (Development Logs, and Gameplay previews/showcases)
-`! Game Design Document`: Contains the original Game Design Document (GDD) for Cherophobia.
-`! Images`: Contains a list of in-game screenshots.
-`Unity Build/Cherophobia`: Contains the Unity-Build folders, with all the important scripts & files that make up Cherophobia.
+- `! 3D Assets`: Contains all relevant files used when creating 3D Assets, includes Blender Files, Export Files (.FBX), aswell as folders including textures and reference material.
+- `! Development Logs and Videos`: Contains two text files with links to video-related content (Development Logs, and Gameplay previews/showcases)
+- `! Game Design Document`: Contains the original Game Design Document (GDD) for Cherophobia.
+- `! Images`: Contains a list of in-game screenshots.
+- `Unity Build/Cherophobia`: Contains the Unity-Build folders, with all the important scripts & files that make up Cherophobia.
 
 ## IN-GAME SCREENSHOTS
 
@@ -39,6 +42,3 @@ Cherophobia is a survival-horror in which you must avoid happiness sources at al
 ![Take This](https://github.com/Tiago-Relvas-UoP/COMP3000/blob/main/!%20Images/TakeThis.png)
 ![Art Room](https://github.com/Tiago-Relvas-UoP/COMP3000/blob/main/!%20Images/ArtRoom.png)
 ![GameOver](https://github.com/Tiago-Relvas-UoP/COMP3000/blob/main/!%20Images/GameOver.png)
-
-## WORK IN PROGRESS REPOSITORY
-This repo is currently a W.I.P., and will be finished by the deadline (5th May).
