@@ -42,6 +42,3 @@ A downloadable .zip of the game can be found in [Itch.io](https://silly-tiago.it
 ![Take This](https://github.com/Tiago-Relvas-UoP/COMP3000/blob/main/!%20Images/TakeThis.png)
 ![Art Room](https://github.com/Tiago-Relvas-UoP/COMP3000/blob/main/!%20Images/ArtRoom.png)
 ![GameOver](https://github.com/Tiago-Relvas-UoP/COMP3000/blob/main/!%20Images/GameOver.png)
-
-## WORK IN PROGRESS REPOSITORY
-This repo is currently a W.I.P., and will be finished by the deadline (5th May).
