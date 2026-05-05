@@ -5,7 +5,6 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Handles Button behaviour in main menu and settings menu.
 public class MainMenu : MonoBehaviour
 {
     [Header("References")]
@@ -22,29 +21,24 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        // Start countdown once flag is true
         if (_startGame) 
         {
             _countdown += Time.deltaTime;
         }
 
-        // Load scene once enough time has elapsed
         if (_countdown >= 9f) SceneManager.LoadScene("SampleScene");
     }
 
-    // Enable flag to start the countdown before loading scene. This allows players to read the narrative screen.
     public void PlayGame() 
     {
         _startGame = true;
     }
 
-    // Quit application
     public void QuitGame() 
     {
         Application.Quit();
     }
 
-    // Set volume AudioMixer values based on their appropriate PlayerPrefs. Set up PlayerPrefs if not already existing.
     private void SetVolume()
     {
         SetupPrefs();

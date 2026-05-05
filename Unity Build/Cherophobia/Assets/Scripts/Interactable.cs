@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-// OLD INTERACTABLE SYSTEM, NOT IN USE ANYMORE
 interface IInteractable
 {
     public void Interact();

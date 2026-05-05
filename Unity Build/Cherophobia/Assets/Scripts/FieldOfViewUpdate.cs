@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Handles smooth FOV changes based on the current Happiness Meter value.
-
 public class FieldOfViewUpdate : MonoBehaviour
 {
     [Header("References")]
@@ -25,11 +23,11 @@ public class FieldOfViewUpdate : MonoBehaviour
         _defaultFoV = _camera.fieldOfView;
     }
 
-    // FOV update calculation
+    // Update is called once per frame
     private void Update()
     {
-        _progress = Mathf.Clamp01(hapController.happinessSlider / 100f); // Clamps happiness progress between 0 and 1
-        float targetFoV = Mathf.Lerp(_defaultFoV, maximumFoV, fovCurve.Evaluate(_progress)); // Evaluates current FOV value based on default and maximum based on an animation curve set in the inspector.
-        _camera.fieldOfView = Mathf.SmoothDamp(_camera.fieldOfView, targetFoV, ref _velocity, smoothing); // Smoothly changes current FOV to new value based on the smoothing variable set in the inspector, once Happiness Meter changes.
+        _progress = Mathf.Clamp01(hapController.happinessSlider / 100f);
+        float targetFoV = Mathf.Lerp(_defaultFoV, maximumFoV, fovCurve.Evaluate(_progress));
+        _camera.fieldOfView = Mathf.SmoothDamp(_camera.fieldOfView, targetFoV, ref _velocity, smoothing);
     }
 }

@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class WarningScreen : MonoBehaviour
 {
-    // Shows a warning screen when booting up the game for the first time.
-
     [Header("Settings")]
     [SerializeField] private float warningDuration;
 
@@ -21,10 +19,8 @@ public class WarningScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Start countdown
         _countdown += Time.deltaTime;
 
-        // load main menu scene once enough time has elapsed.
         if (_countdown >= warningDuration)
         {
             SceneManager.LoadScene("MainMenu");

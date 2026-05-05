@@ -34,17 +34,16 @@ public class PlayerCam : MonoBehaviour
     }
 
     // Update is called once per frame
-    // Handles camera rotation based on mouse input aswell as sensitivity and delta time.
     void Update()
     {
         // Get mouse input
         mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-        yRotation += mouseX; 
-        xRotation -= mouseY; 
+        yRotation += mouseX;
+        xRotation -= mouseY;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Clamp vertical rotation to prevent camera flipping
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         // rotate cam and orientation
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);

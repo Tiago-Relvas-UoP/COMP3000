@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-// Called externally to show an Interact Text when failing a certain interaction, but also for other uses such as hints.
 public class InteractionFailed : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI m_TextMeshPro;
@@ -22,13 +21,11 @@ public class InteractionFailed : MonoBehaviour
 
     private void Update()
     {
-        // Only start time countdown if text is on screen, determined by a flag
         if (_textShown) 
         {
             _time += Time.deltaTime;
         }
 
-        // Once enough time has elapsed, reset flags and text back to default state.
         if (_time > _duration)
         {
             m_TextMeshPro.text = "";
@@ -39,7 +36,6 @@ public class InteractionFailed : MonoBehaviour
         }
     }
 
-    // Method called externally to invoke text. Takes in multiple parameters such as text duration, and font.
     public void failedInteractionText(float duration, string Text, TMP_FontAsset font = null) 
     {
         m_TextMeshPro.text = Text;

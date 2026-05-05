@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-// This script is responsible for creating temporary AudioSource components to play different sound effects (E.g. Footsteps), and destroys those components after the sound effect is concluded
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public AudioMixer sfxMix;
 
+    // Start is called before the first frame update
     private void Awake()
     {
         instance = this;
     }
 
-    // This method is called externally in other scripts to play out a sound effect. Multiple parameters are in place to edit how the SFX plays out.
     public void PlaySFX(AudioClip audioClip, float volume = 1f, float spatialBlend = 1f, float minDist = 1f, float maxDist = 500f, bool muteAfterTime = false, float timeToMute = 9999f) 
     {
         StartCoroutine(PlaySFXCoroutine(audioClip, volume, spatialBlend, minDist, maxDist, muteAfterTime, timeToMute));
     }
 
-    // Dynamic Enumator for each SFX that plays. Destroys the sound effect after it is done playing.
+    // Update is called once per frame
     IEnumerator PlaySFXCoroutine(AudioClip audioClip, float volume = 1f, float spatialBlend = 1f, float minDist = 1f, float maxDist = 500f, bool muteAfterTime = false, float timeToMute = 9999f)
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();

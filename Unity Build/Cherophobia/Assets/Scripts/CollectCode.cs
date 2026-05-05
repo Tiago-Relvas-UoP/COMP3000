@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CollectCode : MonoBehaviour, IInteractable
 {
-    // OLD CODEPIN SCRIPT. THIS IS NOT USED ANYMORE IN THE PROGRAM
-
     private GameManager gameManager;
     private GameObject itemComponent;
+
 
     public void Start()
     {

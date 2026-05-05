@@ -45,7 +45,6 @@ public class Keypad : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
-    // Similiar approach to the HidingLocker.cs script.
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("MainCamera"))
@@ -57,8 +56,6 @@ public class Keypad : MonoBehaviour
             }
         }
     }
-
-    // Similiar approach to the HidingLocker.cs script.
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("MainCamera"))
@@ -70,9 +67,9 @@ public class Keypad : MonoBehaviour
 
     void Update()
     {
-        if (interactable == true) // If within interaction range
+        if (interactable == true)
         {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) // if appropriate keys are pressed, open keypad game object
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
             {
                 // Set keypad active & disable interactable bool
                 keypadActive = true;
@@ -88,9 +85,9 @@ public class Keypad : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
-        if (keypadActive == true) // If keypad active
+        if (keypadActive == true)
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) // Disable if escape is pressed
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 // Disable keypad
                 numText.SetActive(true);
@@ -128,9 +125,9 @@ public class Keypad : MonoBehaviour
             }
 
             numTex.text = codeString;
-            if (stringCharacters == 4) // If 4 characters have been input, check if code is correct
+            if (stringCharacters == 4)
             {
-                if (codeString == correctCode) // If code is correct, disable keypad components and disable access.
+                if (codeString == correctCode)
                 {
                     numText.SetActive(false);
                     correctText.SetActive(true);
@@ -149,7 +146,7 @@ public class Keypad : MonoBehaviour
                     accessGrantedText.SetActive(true);
                     noAccessText.SetActive(false);
 
-                    // GameManager: Set code as placed
+                    // GameManager
                     if (isMasterKeypad) gameManager.placedCode = true;
                     else if (!isMasterKeypad)
                     {
@@ -157,7 +154,7 @@ public class Keypad : MonoBehaviour
                         _blockedDoor.SetActive(false);
                     }
 
-                    // Calls upon method to disable keypad canvas component after a set time.
+                    // Put variable for gameManager here
                     if (token == 0)
                     {
                         StartCoroutine(endSesh());
@@ -166,7 +163,7 @@ public class Keypad : MonoBehaviour
                     }
 
                 }
-                else // If code is wrong, reset keypad components.
+                else
                 {
                     numText.SetActive(false);
                     incorrectText.SetActive(true);
@@ -181,7 +178,6 @@ public class Keypad : MonoBehaviour
                     but9.interactable = false;
                     gameManager.IsKeypadBeingUsed = false;
 
-                    // Calls upon method to disable keypad canvas component after a set time.
                     if (token == 0)
                     {
                         StartCoroutine(endSesh());
@@ -192,8 +188,6 @@ public class Keypad : MonoBehaviour
             }
         }
     }
-
-    // When called, appropriately resets all keypad components and returns player to the key, locking cursor in place again.
     IEnumerator endSesh()
     {
         yield return new WaitForSeconds(2.5f);
@@ -221,8 +215,6 @@ public class Keypad : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // When called by the canvas components by player interaction, inputs digit to keypad screen based on number that was pressed.
-
     public void pressedButton(string digit) 
     {
         codeString = codeString + digit;
@@ -230,7 +222,7 @@ public class Keypad : MonoBehaviour
         AudioManager.instance.PlaySFX(buttonPressSFX, 0.2f);
     }
 
-    // Old Button methods
+    // Button methods
     public void pressedOne()
     {
         codeString = codeString + "1";

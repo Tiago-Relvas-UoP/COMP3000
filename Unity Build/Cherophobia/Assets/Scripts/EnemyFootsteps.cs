@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Handles the playing of Enemy Footsteps SFX (The Mimic), and also holds a method to play attack sfx.
 public class EnemyFootsteps : MonoBehaviour
 {
     private EnemyController enemy;
@@ -34,13 +33,12 @@ public class EnemyFootsteps : MonoBehaviour
         StartCoroutine(PlayFootSteps());
     }
 
-    // Calls upon PlaySFX() method in AudioManager.cs to play Attack SFX
     public void PlayAttackSFX() 
     { 
         audioManager.PlaySFX(attackSFX, volume, spatialBlend, minRange, maxRange);
     }
 
-    // Runs each frame. Plays Footsteps SFX with delay between each playthrough based on current enemy behaviour. Wont play if its currently waiting on top of a patrol point, or is attacking the player.
+    // Update is called once per frame
     IEnumerator PlayFootSteps()
     {
         while (true)
@@ -50,6 +48,8 @@ public class EnemyFootsteps : MonoBehaviour
                 _footstepDelay = walkDelay;
                 audioManager.PlaySFX(footStepSFX, volume, spatialBlend, minRange, maxRange);
             }
+
+            
 
             yield return new WaitForSeconds(_footstepDelay);
         }

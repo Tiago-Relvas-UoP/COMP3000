@@ -103,12 +103,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // Casts raycast down, and if touching object mark as ground, then set player as grounded.
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // Self-note: Changed to 0.3f from 0.2f
 
-        currentMaxStamina = minStamina + (baseStamina - minStamina) * Mathf.Exp(-staminaFallofRate * _currentSpeedModifier); // Max stamina calculation
-        isSprinting = Input.GetKey(sprintKey) && currentStamina > 0f && !_isFatigued && !_sprintInCooldown; // Enable sprinting flag if conditions are met
+        currentMaxStamina = minStamina + (baseStamina - minStamina) * Mathf.Exp(-staminaFallofRate * _currentSpeedModifier);
+        isSprinting = Input.GetKey(sprintKey) && currentStamina > 0f && !_isFatigued && !_sprintInCooldown;
 
-        // Put sprint on cooldown if key is pressed and not fatigued (prevents sprint spam)
         if (Input.GetKeyUp(sprintKey) && currentStamina > 0f && !_isFatigued) 
         {
             _sprintInCooldown = true;
@@ -121,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         HandleStamina();
         ExhaustedSound();
 
-        // Handle drag
+        // handle drag
         if (grounded)
         {
             rb.drag = groundDrag;
@@ -135,16 +134,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer(); // Player movement is handled at a fixed 50 frames per second.
+        MovePlayer();
     }
 
     private void MyInput()
     {
-        // Store raw input values for movement in both axis.
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
 
-        // If jump conditions are met and action key is pressed, jump
+        // when player jumps
         if(Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
@@ -155,7 +153,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Handle player states
     private void StateHandler()
     {
 
@@ -181,30 +178,28 @@ public class PlayerMovement : MonoBehaviour
         // calculate movement direction
         moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
 
-        // If player is on slope.
+        // When on slope
         if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force); // Add parallel force to slope
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
             if(rb.velocity.y > 0)
             {
-                rb.AddForce(Vector3.down * 160f, ForceMode.Force); // Apply downward force to keep player on slope
+                rb.AddForce(Vector3.down * 160f, ForceMode.Force);
             }
         }
         else if (grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force); // Add normal movement force to the rigidbody so player moves
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         } 
         else if (!grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Add force to rigidbody when player is in the air.
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
-        rb.useGravity = !OnSlope(); // Disable gravity if on slope to prevent sliding down
+        rb.useGravity = !OnSlope();
     }
 
-    // Handles movement states, and movement speed when sprinting, as well as exponential stamina penalty that increases the
-    // higher the player sprints for (also punishes players who hold shift even after running out of stamina
     private void HandleSprint() 
     {
         if (isSprinting)
@@ -221,43 +216,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Handles stamina logic
     private void HandleStamina() 
     {
-        // exponential penalty logic
         if (!isSprinting && exponentialPenalty > 1f)
         {
             exponentialPenalty -= Time.deltaTime / 20f;
             if (exponentialPenalty < 1) exponentialPenalty = 1f;           
         }
 
-        // Drain stamina if sprinting
         if (isSprinting)
         {
             currentStamina -= (Time.deltaTime * drainRate * exponentialPenalty);
         }
-        else if (!_isFatigued && !_sprintInCooldown) // Else recharge it, if not in cooldown and player is not fatigued
+        else if (!_isFatigued && !_sprintInCooldown)
         {
             currentStamina += Time.deltaTime * rechargeRate;
         }
 
-        if (currentStamina <= 0f && fatigueTimer <= 3f) // Fatigue player if they run out of stamina.
+        if (currentStamina <= 0f && fatigueTimer <= 3f)
         {
             fatigueTimer += Time.deltaTime;
             _isFatigued = true;
         }
-        else if (fatigueTimer >= 3f) // Reset Fatigue after enough time has elapsed, and recharge stamina as normal.
+        else if (fatigueTimer >= 3f)
         {
             currentStamina += Time.deltaTime * rechargeRate;
             _isFatigued = false;
             fatigueTimer = 0f;
         }
 
-        if (_sprintInCooldown)  // Handle sprint cooldown timer and then resets it back to false.
+        if (_sprintInCooldown) 
         {
             _timeSinceStopSprint += Time.deltaTime;
 
-            // If enough time has passed, reset sprint cooldown
             if (_timeSinceStopSprint >= sprintCooldown) 
             {
                 _sprintInCooldown = false;
@@ -265,12 +256,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // Prevent stamina from going above/below maximum/minimum values.
         if (currentStamina < 0f) currentStamina = 0f;
         if (currentStamina > currentMaxStamina) currentStamina = currentMaxStamina;
     }
 
-    // Handles player speed so rigidbody velocity doesnt exceed set movement speed.
     private void SpeedControl()
     {
         // limiting speed on slope
@@ -294,7 +283,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Handle jump behaviour
     private void Jump()
     {
         exitingSlope = true;
@@ -302,10 +290,9 @@ public class PlayerMovement : MonoBehaviour
         // reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); // Add upwards force to rigidbody
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
-    // Reset Jump flags
     private void ResetJump()
     {
         readyToJump = true;
@@ -313,7 +300,6 @@ public class PlayerMovement : MonoBehaviour
         exitingSlope = false;
     }
 
-    // Determines if player is on Slope by casting a raycast downwards to the players position and comparing the angle between itself and the normal of the object.
     private bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
@@ -326,13 +312,11 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    // Project movement direction pararell to the slope normal to allow player to move along the slope normally 
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    // Handles movement speed modifier based on current Happiness Meter state.
     private void HappinessModifier() 
     {
         switch (_happinessController.state) 
@@ -365,7 +349,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Handles the sound effect that plays once player is exhausted. Uses similiar approach compared to SFX in the HappinessController.cs script.
     private void ExhaustedSound() 
     {
         _progress = Mathf.Clamp01(currentStamina / currentMaxStamina);

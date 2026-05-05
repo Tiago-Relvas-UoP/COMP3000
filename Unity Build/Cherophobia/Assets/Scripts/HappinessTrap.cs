@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-// Responsible for handling Proximity Trap, or "Happy memory/object" trap.
 public class HappinessTrap : MonoBehaviour
 {
     [Header("Happiness Settings")]
@@ -75,10 +74,9 @@ public class HappinessTrap : MonoBehaviour
 
     private void Update()
     {
-        if (_startTextTimer) _textTime += Time.deltaTime; // If flag is enable, start text timer countdown
-        if (_startTextCooldown) _timeSinceTextShown += Time.deltaTime; // If flag is enable, start text timer cooldown countdown.
+        if (_startTextTimer) _textTime += Time.deltaTime;
+        if (_startTextCooldown) _timeSinceTextShown += Time.deltaTime;
 
-        // Disable text game objects if text duration has passed the countdown, and reset the relevant flags.
         if (_textTime >= textDuration)
         {
             textBase.SetActive(false);
@@ -91,43 +89,39 @@ public class HappinessTrap : MonoBehaviour
             _timeSinceTextShown = 0.0f;
             _textTime = 0f;
 
-            // If its first shown text, then enable its flag to true to determine it was already shown once.
             if (!_isFirstTextShown)
             {
                 _isFirstTextShown = true;
             }
         }
 
-        // If enough time has passed since text was shown, then disable relevant cooldown flags.
         if (_timeSinceTextShown >= textCooldown) 
         {
             _startTextCooldown = false;
             _textInCooldow = false;
         }
+
+        // Debug.Log("Time values: \n- " + _textTime + " / " + _timeSinceTextShown);
     }
 
     // Update is called once per frame
     private void OnTriggerStay(Collider collider)
     {
-        // If Player enters in trigger range
         if (collider.gameObject.tag == "Player")
         {
             _gameManager.insideTrap = true;
-            _timeSincePlayerInRange += Time.deltaTime; // Start contdown since they entered range
+            _timeSincePlayerInRange += Time.deltaTime;
 
-            // If enough time has passed (Roughly half the time before trap becomes active, and clue was not shown yet), then show clue to player regarding dangerous/happy object nearby.
             if (_timeSincePlayerInRange >= Mathf.Floor(TimeBeforeActive / 1.5f) && !_wasClueShown) 
             {
                 _interactionFailed.failedInteractionText(clueDuration, clueText);
                 _wasClueShown = true;
             } 
 
-            // If enough time has passed, enable trap
             if (_timeSincePlayerInRange >= TimeBeforeActive)
             {
-                _timeSinceLastIncrease += Time.deltaTime; // Track time since last increase in happiness by the trap
+                _timeSinceLastIncrease += Time.deltaTime;
 
-                // If tracked time is higher than delay timer, then increase happiness and reset timer to default. Happiness is added in small dots rather than continously
                 if (_timeSinceLastIncrease >= DelayPerDot)
                 {
                     _timeSinceLastIncrease = 0.0f;
@@ -137,27 +131,24 @@ public class HappinessTrap : MonoBehaviour
 
             }
 
-            // If player has been in range of an active trap for sometime, display a specialized text.
             if (_timeSincePlayerInRange >= TimeBeforeActive + 3f)
             {
-                // if flag that tracks first text is enabled, disable the flag and start timer to countdown text duration
                 if (_firstText)
                 {
                     _startTextTimer = true;
                     _firstText = false;
                 }
 
-                if (!_isFirstTextShown) ShowText(textBase, textShadow, baseTextXOffset, baseTextYOffset, shadowTextXOffset, shadowTextYOffset, maxScale); // Show first text if not shown already
-                else // If first text already shown
+                if (!_isFirstTextShown) ShowText(textBase, textShadow, baseTextXOffset, baseTextYOffset, shadowTextXOffset, shadowTextYOffset, maxScale);
+                else 
                 {
-                    if (_secondText)  // If second text, reset its flag, disable text timer and start cooldown
+                    if (_secondText) 
                     {
                         _startTextTimer = false;
                         _startTextCooldown = true;
                         _secondText = false;
                     }
 
-                    // If text is not in cooldown, then start text timer and call upon ShowText() to display text on screen
                     if (!_textInCooldow)
                     {
                         _startTextTimer = true;
@@ -168,7 +159,6 @@ public class HappinessTrap : MonoBehaviour
         }
     }
 
-    // Reset necessary flags/objects once player leaves trap range
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player") 
@@ -191,9 +181,6 @@ public class HappinessTrap : MonoBehaviour
         }
     }
 
-    // Method responsible for showing Text on screen once trap is active. Handles two texts, a base text and a shadow (outline) text.
-    // Takes into account position offset and scale variance for both texts, which are random based on given offset/scale range.
-    // Shadow position is based on base text position, with an additional random offset added on top of the base text position so they are never far apart.
     private void ShowText(GameObject baseText, GameObject shadowText, float xVariance = 500f, float yVariance = 500f, float xShadowOffset = 60f, float yShadowOffset = 60f, float scale = 0.8f)
     {
         baseText.SetActive(true);

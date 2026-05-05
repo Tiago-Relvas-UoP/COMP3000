@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Handles the Trigger Trap (or Happiness Spray Trap) behaviour.
 public class TriggerTrap : MonoBehaviour
 {
     [Header("Values")]
@@ -76,22 +75,20 @@ public class TriggerTrap : MonoBehaviour
     {
         ShowMesh();
         trapMesh.SetActive(ShowMesh());
-        if (_triggered && !_jumpscareComplete) ImageJumpscare(); // Play Jumspcare sequence once trap is triggered
-        if (_triggered) ShowText(); // Show Text after jumpscare, once trap is triggered
+        if (_triggered && !_jumpscareComplete) ImageJumpscare();
+        if (_triggered) ShowText();
 
     }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider collider)
     {
-        // Show clue text once trap is active for the first time.
         if (isTrapActive && !_wasClueShown) 
         {
             _interactionFailed.failedInteractionText(clueDuration, clueText);
             _wasClueShown = true;
         }
 
-        // Play appropriate SFX once trap is active, increase Happiness and change appropriate flags to disable trap and indicates its been triggered.
         if (isTrapActive)
         {
             AudioManager.instance.PlaySFX(triggerAudio, triggerVolume);
@@ -105,17 +102,14 @@ public class TriggerTrap : MonoBehaviour
         }
     }
 
-    // Changes Mesh depending if trap was triggered + completed.
     private bool ShowMesh()
     {
         if (!_trapComplete) return true;
         else return false;
     }
 
-    // Plays sequence of images (jumpscare)
     private void ImageJumpscare() 
     {
-        // If not shown already, show first image and enable flag that tracks its been shown.
         if (!_firstImageShowed) 
         {
             imageHolder.SetActive(true);
@@ -126,12 +120,10 @@ public class TriggerTrap : MonoBehaviour
             _firstImageShowed = true;
         }
 
-        // If the amount of images shown is below the set quantity value, keep showing images.
         if (_imageCount <= imageQuantity)
         {
             _time += Time.deltaTime;
             
-            // If enough time has passed, show new image and reset timer.
             if (_time > imageDuration)
             {
                 _imageIndex = Random.Range(0, images.Length);
@@ -142,7 +134,6 @@ public class TriggerTrap : MonoBehaviour
             }
         }
 
-        // Disable Images game object and mark object as completed.
         if (_imageCount > imageQuantity)
         {
             imageHolder.SetActive(false);
@@ -151,27 +142,22 @@ public class TriggerTrap : MonoBehaviour
         }
     }
 
-    // Shows Text during and after jumpscare is completed.
     private void ShowText() 
     { 
-        // If not completed, show appropriate text.
         if (!_jumpscareComplete) 
         {
             ShowImage(0, basePositionOffset, basePositionOffset, baseScaleOffset, NormalText);
             ShowImage(0, shadowPositionOffset, shadowPositionOffset, baseScaleOffset, ShadowText);
         }
 
-        // If completed, show appropriate text.
         if (_jumpscareComplete) 
         {
-            _textTime += Time.deltaTime; // Countdown duration text is on screen.
+            _textTime += Time.deltaTime;
             //Debug.Log("Current Timer [Jumpscare complete]: " + _textTime);
 
-            // Change text position each frame.
             ShowImage(0, basePositionOffset, basePositionOffset, baseScaleOffset, NormalText);
             ShowImage(0, shadowPositionOffset, shadowPositionOffset, baseScaleOffset, ShadowText);
 
-            // If enough time has passed, disable all text objects, and mark trap as complete.
             if (_textTime > durationAfterJumpscare) 
             {
                 NormalText.SetActive(false);
@@ -180,7 +166,6 @@ public class TriggerTrap : MonoBehaviour
                 _triggered = false;
                 _trapComplete = true;
 
-                // Show clue regarding how to avoid trigger traps if not shown already, after trap is completed.
                 if (!_wasClueShown)
                 {
                     _interactionFailed.failedInteractionText(clueDuration, clueText);
@@ -190,8 +175,6 @@ public class TriggerTrap : MonoBehaviour
         }
     }
 
-    // If no game object is provided, changes scale and positon of the image game object each frame based on given offset input.
-    // Else, if game object is provided, change from that game object instead (for text) and set as true.
     private void ShowImage(int index, float xVariance = 0, float yVariance = 0, float scale = 1, GameObject gameObject = null) 
     {
         _xPosition = Random.Range(-xVariance, xVariance);

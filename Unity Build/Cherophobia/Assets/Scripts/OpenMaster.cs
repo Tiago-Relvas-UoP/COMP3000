@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class OpenMaster : MonoBehaviour, IInteractable
 {
-    // THIS IS THE OLD MASTER DOOR SCRIPT, ITS NOT IN USE ANYMORE
-
     private GameManager gameManager;
     private GameObject itemComponent;
 

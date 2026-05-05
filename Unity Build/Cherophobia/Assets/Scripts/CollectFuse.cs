@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CollectFuse : MonoBehaviour, IInteractable
 {
-    // OLD FUSE SCRIPT. THIS IS NOT USED ANYMORE IN THE PROGRAM
-
     private GameManager gameManager;
     private GameObject fuseComponent;
 

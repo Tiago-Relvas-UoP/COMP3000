@@ -7,14 +7,12 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-// Handles the Game Over sequence
 public class GameOver : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public Image entitySprite;
     [SerializeField] public TextMeshProUGUI Text;
     [SerializeField] public TextMeshProUGUI mysteriousVoice;
-    [SerializeField] public TextMeshProUGUI skipText;
     [SerializeField] public GameObject tipsMenu;
     [SerializeField] public GameObject GameOverMenu;
     [SerializeField] public AudioSource audioSource;
@@ -48,20 +46,18 @@ public class GameOver : MonoBehaviour
 
         Text.text = "";
         mysteriousVoice.text = "";
-        skipText.text = "";
         entitySprite.color = new Color(entitySprite.color.r, entitySprite.color.g, entitySprite.color.b, _alphaValue);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        FadeInEntity(); 
+        FadeInEntity();
 
-        if (_EntityShown) // If entity sprite was shown, call upon UpdateText to show text and fade in an background music.
+        if (_EntityShown) 
         {
             UpdateText();
             mysteriousVoice.text = "You hear a mysterious voice...";
-            skipText.text = "(Press Left Mouse Button/Space to skip)";
 
             if (audioSource.volume < _audioVolume) 
             {
@@ -71,7 +67,6 @@ public class GameOver : MonoBehaviour
         
     }
 
-    // Slowly fades in the entity sprite, and enables a flag once its fully visible to start text sequence.
     private void FadeInEntity() 
     {
         _countdown += Time.deltaTime;
@@ -87,7 +82,6 @@ public class GameOver : MonoBehaviour
 
     }
 
-    // Shows the cause of death text. Dialogue shown is based on current Player Preference "lastdeathcause" value.
     private void UpdateText() 
     {
         DetectPlayerInput();
@@ -95,14 +89,12 @@ public class GameOver : MonoBehaviour
         _deathCause = PlayerPrefs.GetFloat("lastDeathCause");
         _textCountdown += Time.deltaTime;
 
-        // Disable "Tips" txet and enable interactable menu once all tips have been shown.
         if (_tipsCompleted && !_TextRunning) 
         {
             tipsMenu.SetActive(false);
             GameOverMenu.SetActive(true);
         }
 
-        // If death cause has not yet been shown, show it according to death caused, fetched by PlayerPrefs.
         if (!_DeathCauseShown) 
         {
             string cause;
@@ -124,9 +116,9 @@ public class GameOver : MonoBehaviour
                     break;
             }
 
-            Text.text = "You were killed by: " + cause; // Dynamic death cause
+            Text.text = "You were killed by: " + cause;
         } 
-        else if (!_TextRunning && !_tipsCompleted) // If text is not running and tips have not been completed, call upon Sentences() with a dialogue intext to update current text.
+        else if (!_TextRunning && !_tipsCompleted) 
         {
             _TextRunning = true;
 
@@ -136,15 +128,14 @@ public class GameOver : MonoBehaviour
                     Text.text = Sentences(_dialogueIndex - 1).text;
                     break;
                 case 1f:
-                    Text.text = Sentences(_dialogueIndex + 2).text;
+                    Text.text = Sentences(_dialogueIndex + 1).text;
                     break;
                 case 2f:
-                    Text.text = Sentences(_dialogueIndex + 5).text;
+                    Text.text = Sentences(_dialogueIndex + 3).text;
                     break;
             }
         }
 
-        // Once enough time has passed, reset the appropriate flags and increment dialogue index to show next appropriate dialogue on next text call.
         if (_textCountdown >= textDuration) 
         {
             _dialogueIndex++;
@@ -153,51 +144,11 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    // Based on input, returns a TextMeshProUGUI text string with appropriate dialogue.
     private TextMeshProUGUI Sentences(int number) 
     {
         TextMeshProUGUI dialogue;
         dialogue = new TextMeshProUGUI();
 
-        switch (number) 
-        {
-            case 0: // The Mimic: First Sentence
-                dialogue.text = "The Mimic roams the environment, making a tremendous amount of noise wherever it goes.";
-                break;
-            case 1: // The Mimic: Second Sentence
-                dialogue.text = "If it spots you, run away and hide as soon as possible!";
-                break;
-            case 2: // Happy Memory: First Sentence
-                dialogue.text = "You deserve love. You deserve meaning.\n\nDo not listen to it.\n\nKeep going, I believe in you.";
-                _tipsCompleted = true;
-                break;
-            case 3: // Happy Memory: First Sentence
-                dialogue.text = "These are objects scattered around the environment (Such as Artistic Objects, and other items) that hold sentimental value to you.";
-                break;
-            case 4: // Happy Memory: Second Sentence
-                dialogue.text = "Avoid staying around them for too long, as they will gradually increase your Happiness Meter.\n\nExcess Happiness will kill you.";
-                break;
-            case 5: // Happy Memory: Second Sentence
-                dialogue.text = "These were not always to be feared.\n\nWith time, I hope you heal, and realise that you deserve happiness.\n\nI am proud of you.";
-                _tipsCompleted = true;
-                break;
-            case 6: // Trigger Trap: First Sentence
-                dialogue.text = "These are scattered around the environment.\n\nStepping on them will trigger a sequence of Happy Memories, significantly increasing your Happiness Status.";
-                break;
-            case 7: // Trigger Trap: Second Sentence
-                dialogue.text = "Navigate the Environment carefully, watching where you step.\n\nJump over these Traps to avoid them.";
-                break;
-            case 8: // Trigger Trap: Second Sentence
-                dialogue.text = "You are making significant progress.\n\nKeep at it, I am proud of you.\n\nIgnore it, do not let its thoughts consume you from the inside.";
-                _tipsCompleted = true;
-                break;
-            default:
-                dialogue.text = "I'm not entirely sure what you died to.\n\nSorry but I wont be able to help you!";
-                _tipsCompleted = true;
-                break;
-        }
-
-        /*
         switch (number) 
         {
             case 0: // The Mimic: First Sentence
@@ -226,18 +177,15 @@ public class GameOver : MonoBehaviour
                 _tipsCompleted = true;
                 break;
         }
-        */
 
         return dialogue;
     }
 
-    // Checks for appropriate button presses to skip current dialogue
     private void DetectPlayerInput() 
     {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) _textCountdown = 9999f;
     }
 
-    // Resets the appropriate flags and values to default once scene is initialized.
     private void SetupFlags() 
     {
         AudioListener.pause = false;

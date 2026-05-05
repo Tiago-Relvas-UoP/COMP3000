@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Handles Player Health, aswell as damage modifier based on happiness meter state.
 public class HealthController : MonoBehaviour
 {
     [Header("Health Properties")]
@@ -34,8 +33,8 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        UpdateVisuals(); 
-        UpdateDamageModifier(); 
+        UpdateVisuals();
+        UpdateDamageModifier();
 
         // Debug.Log("Damage Modifier: " + _damageModifier);
 
@@ -45,13 +44,12 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    // Calls on responsible screen that updates HP visuals based on current HP value.
     public void UpdateVisuals() // Update visual indicator for health level
     {
         healthBar.SetHealth(currentHealth);
     }
 
-    // Function that once called, reduces player hp by amount. Has different flags to ensure different outcome based on damage type
+    // Function that once called, reduces player hp by amount
     public void ReceiveDamage(int damage, bool isSelfInjure = false, bool insanityDamage = false)
     {
         if (isSelfInjure || insanityDamage)
@@ -83,7 +81,6 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    // Updates damage modifier based on current Happiness state, set in HappinessController script.
     private void UpdateDamageModifier()
     {
         switch (happinessController.state)

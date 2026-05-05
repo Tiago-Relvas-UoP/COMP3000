@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TempCamFix : MonoBehaviour
 {
-    // This script was an attempt at fixing an issue with the camera where it would be turning away from its set position on game start.
 
+    // This script only exists because somehow my camera is always rotating -90 degrees on game startxdddd :D
     public Transform objectTrans;
     public float _timer = 0.03f;
     private float _time;

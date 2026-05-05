@@ -9,6 +9,6 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = cameraPosition.position; // Update owns position based on cameras position 
+        transform.position = cameraPosition.position;
     }
 }
